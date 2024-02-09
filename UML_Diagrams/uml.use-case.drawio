@@ -1,12 +1,9 @@
 <mxfile host="65bd71144e">
     <diagram id="_I8FDzfbOIK4ToeKMYd3" name="Page-1">
-        <mxGraphModel dx="402" dy="328" grid="1" gridSize="10" guides="0" tooltips="1" connect="1" arrows="0" fold="1" page="0" pageScale="1" pageWidth="1000" pageHeight="700" math="0" shadow="0">
+        <mxGraphModel dx="158" dy="129" grid="1" gridSize="10" guides="0" tooltips="1" connect="1" arrows="0" fold="1" page="0" pageScale="1" pageWidth="1000" pageHeight="700" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="" style="whiteSpace=wrap;html=1;fillColor=none;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;connectable=0;" parent="1" vertex="1">
-                    <mxGeometry x="200" y="30" width="560" height="770" as="geometry"/>
-                </mxCell>
                 <mxCell id="3" value="Visiteur" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="120" y="130" width="30" height="60" as="geometry"/>
                 </mxCell>
@@ -27,18 +24,6 @@
                 </mxCell>
                 <mxCell id="6" value="Admin" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="120" y="640" width="30" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="13" value="" style="endArrow=none;html=1;snapToPoint=0;anchorPointDirection=0;bendable=0;entryX=0.36;entryY=0.002;entryDx=0;entryDy=0;entryPerimeter=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;connectable=0;" parent="1" target="2" edge="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="200" y="79" as="sourcePoint"/>
-                        <mxPoint x="370" y="50" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="360" y="79"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="14" value="MoroChic Treasures&amp;nbsp;&lt;span style=&quot;font-weight: 700; font-family: Arial, Helvetica, sans-serif; font-size: 1.34em; text-align: start;&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;™&lt;/font&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;movable=0;rotatable=0;deletable=0;editable=0;connectable=0;" parent="1" vertex="1">
-                    <mxGeometry x="210" y="40" width="150" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="15" value="AUTH" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="630" y="330" width="110" height="40" as="geometry"/>
@@ -559,6 +544,9 @@
                 </mxCell>
                 <mxCell id="169" value="&amp;lt;&amp;lt; extends &amp;gt;&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=10;fontColor=#FFFFFF;" vertex="1" parent="1">
                     <mxGeometry x="590" y="530" width="90" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="170" value="&lt;span style=&quot;&quot;&gt;MoroChic Treasures&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-weight: 700; font-family: Arial, Helvetica, sans-serif; font-size: 1.34em; text-align: start;&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;™&lt;/font&gt;&lt;/span&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;width=140;height=40;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="30" width="560" height="770" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
