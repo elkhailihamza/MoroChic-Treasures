@@ -13,8 +13,7 @@ return new class extends Migration {
         Schema::create('product_images', function (Blueprint $table) {
             $table->id();
             $table->text('img_url');
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
