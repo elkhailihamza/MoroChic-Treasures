@@ -15,4 +15,8 @@ class Review extends Model
         'product_id',
         'user_id',
     ];
+    public function review_images()
+    {
+        return $this->hasMany(ReviewImages::class, 'review_id');
+    }
 }

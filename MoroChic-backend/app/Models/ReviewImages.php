@@ -12,4 +12,8 @@ class ReviewImages extends Model
         'review_id',
         'img_url',
     ];
+    public function review()
+    {
+        return $this->belongsTo(Review::class, 'review_id');
+    }
 }
