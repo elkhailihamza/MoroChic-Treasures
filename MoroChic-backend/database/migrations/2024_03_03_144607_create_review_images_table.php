@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('review_images', function (Blueprint $table) {
             $table->id();
-            $table
+            $table->foreignId('review_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->text('img_url');
             $table->timestamps();
         });
     }
