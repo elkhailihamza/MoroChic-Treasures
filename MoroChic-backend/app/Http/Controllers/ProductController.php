@@ -32,6 +32,10 @@ class ProductController extends Controller
                 $this->uploadImages($request->images, $product->id);
             }
 
+            if ($request->has('tags_to_add') || $request->has('tags_to_remove')) {
+                $this->addOrRemoveTags($request->input('tags_to_add'), $request->input('tags_to_remove'), $product);
+            }
+
             return response()->json(
                 [
                     'message' => 'successfully created product!',
@@ -55,5 +59,15 @@ class ProductController extends Controller
                 'img_url' => $imagePath,
             ]);
         endforeach;
+    }
+    public function addOrRemoveTags($tagsToAdd, $tagsToRemove, Product $product)
+    {
+        if (!empty($tagsToAdd)) {
+            $product->tags()->attach($tagsToAdd);
+        }
+
+        if (!empty($tagsToRemove)) {
+            $product->tags()->detach($tagsToRemove);
+        }
     }
 }
