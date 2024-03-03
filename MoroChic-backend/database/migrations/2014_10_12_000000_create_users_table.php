@@ -19,8 +19,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('bio')->nullable();
+            $table->text('avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->foreignId('role_id')->nullable()->constrained()->on('users')->onUpdate('cascade')->onDelete('set null');
         });
     }
 

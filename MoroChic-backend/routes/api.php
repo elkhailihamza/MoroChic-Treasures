@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
     Route::post('/me', 'me')->middleware('auth:sanctum');
+});
+
+Route::controller(ProductController::class)->group(function() {
+    Route::post('/products/store', 'store')->middleware('auth:sanctum');
 });

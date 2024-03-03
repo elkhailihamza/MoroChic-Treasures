@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -32,29 +33,32 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'username' => 'required|string|min:3|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
+        try {
+            $request->validate([
+                'username' => 'required|string|min:3|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|string|min:8',
+            ]);
 
-        if ($validator->fails()) {
-            return response()->json(['message' => 'Validation failed', 'errors' => $validator->errors()], 422);
+            $user = User::create([
+                'username' => $request->input('username'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+            ]);
+
+            $token = $user->createToken('auth_token')->plainTextToken;
+
+            return response()->json([
+                'message' => 'Successfully created account!',
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+            ], 201);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Registration Failed!',
+                'error' => $e->errors(),
+            ], 422);
         }
-
-        $user = User::create([
-            'username' => $request->input('username'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-        ]);
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json([
-            'message' => 'Successfully created account!',
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ], 201);
     }
     public function me(Request $request)
     {
