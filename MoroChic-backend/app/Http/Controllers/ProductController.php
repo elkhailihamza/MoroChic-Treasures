@@ -25,6 +25,7 @@ class ProductController extends Controller
                     'content' => $request->input('content'),
                     'stock' => $request->input('stock'),
                     'user_id' => $request->user()->id,
+                    'category_id' => $request->input('category') ?? NULL,
                 ]
             );
 
