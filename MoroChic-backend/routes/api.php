@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::middleware('auth:sanctum')->group(function() {
     
     Route::controller(ReviewController::class)->group(function() {
         Route::post('/reviews/store', 'store');
+    });
+
+    Route::controller(TagController::class)->group(function() {
+        Route::post('/tags/store', 'store');
     });
 });
 
