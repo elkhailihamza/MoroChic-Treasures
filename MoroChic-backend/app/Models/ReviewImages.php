@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ReviewImages extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'review_id',
+        'img_url',
+    ];
 }
