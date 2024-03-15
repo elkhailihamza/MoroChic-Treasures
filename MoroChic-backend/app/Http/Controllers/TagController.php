@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class TagController extends Controller
 {
+    public function addOrRemoveTags($tagsToAdd, $tagsToRemove, Product $product)
+    {
+        if (!empty($tagsToAdd)) {
+            $product->tags()->attach($tagsToAdd);
+        }
+
+        if (!empty($tagsToRemove)) {
+            $product->tags()->detach($tagsToRemove);
+        }
+    }
     public function store(Request $request)
     {
         try {

@@ -40,18 +40,8 @@ class ReviewController extends Controller
         } catch(ValidationException $e) {
             return response()->json([
                 'message' => 'Review Error!',
-                'error' => $e->errors(),
+                'error' => $e->validator->errors()->all(),
             ], 422);
         }
-    }
-    public function uploadImages($images, $review_id)
-    {
-        foreach ($images as $image) :
-            $imagePath = $image->store('images', 'public');
-            ReviewImages::create([
-                'review_id' => $review_id,
-                'img_url' => $imagePath,
-            ]);
-        endforeach;
     }
 }

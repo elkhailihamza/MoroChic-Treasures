@@ -25,7 +25,7 @@ class CategoryController extends Controller
         } catch (ValidationException $e) {
             return response()->json([
                 'message' => 'Category Creation Error!',
-                'error' => $e->errors(),
+                'error' => $e->validator->errors()->all(),
             ], 422);
         }
     }

@@ -9,12 +9,20 @@ use Illuminate\Validation\ValidationException;
 
 class ProductController extends Controller
 {
+    public function index()
+    {
+        $products = Product::get();
+        return response()->json([
+            'message' => 'Fetched Products!',
+            'products' => $products,
+        ], 200);
+    }
     public function store(Request $request)
     {
         try {
             $request->validate([
                 'title' => 'required|string|max:255',
-                'content' => 'required|string|max:8000',
+                'body' => 'required|string|max:8000',
                 'stock' => 'required|int|between:1,999',
                 'images.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             ]);
@@ -22,7 +30,7 @@ class ProductController extends Controller
             $product = Product::create(
                 [
                     'title' => $request->input('title'),
-                    'content' => $request->input('content'),
+                    'body' => $request->input('body'),
                     'stock' => $request->input('stock'),
                     'user_id' => $request->user()->id,
                     'category_id' => $request->input('category') ?? NULL,
@@ -30,7 +38,7 @@ class ProductController extends Controller
             );
 
             if ($request->has('images') && is_array($request->images)) {
-                $this->uploadImages($request->images, $product->id);
+                $this->uploadImages($request->images, $product);
             }
 
             if ($request->has('tags_to_add') || $request->has('tags_to_remove')) {
@@ -47,28 +55,8 @@ class ProductController extends Controller
         } catch (ValidationException $e) {
             return response()->json([
                 'message' => 'Product Creation Error!',
-                'error' => $e->errors()
+                'error' => $e->validator->errors()->all(),
             ], 422);
-        }
-    }
-    public function uploadImages($images, $productId)
-    {
-        foreach ($images as $image) :
-            $imagePath = $image->store('images', 'public');
-            ProductImages::create([
-                'productId' => $productId,
-                'img_url' => $imagePath,
-            ]);
-        endforeach;
-    }
-    public function addOrRemoveTags($tagsToAdd, $tagsToRemove, Product $product)
-    {
-        if (!empty($tagsToAdd)) {
-            $product->tags()->attach($tagsToAdd);
-        }
-
-        if (!empty($tagsToRemove)) {
-            $product->tags()->detach($tagsToRemove);
         }
     }
 }

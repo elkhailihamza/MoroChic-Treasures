@@ -56,7 +56,7 @@ class AuthController extends Controller
         } catch (ValidationException $e) {
             return response()->json([
                 'message' => 'Registration Failed!',
-                'error' => $e->errors(),
+                'errors' => $e->validator->errors()->all(),
             ], 422);
         }
     }
