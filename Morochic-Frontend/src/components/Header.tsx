@@ -1,10 +1,10 @@
 interface headerProps {
   className: string;
-  header: string;
+  children: string;
 }
 
-const Header = ({ className, header }: headerProps) => {
-  return <h1 className={className}>{header}</h1>;
+const Header = ({ className, children }: headerProps) => {
+  return <h1 className={className}>{children}</h1>;
 };
 
 export default Header;

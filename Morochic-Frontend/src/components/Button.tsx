@@ -3,7 +3,6 @@ interface btnProps {
   type: "submit" | "reset" | "button";
   color?: string;
   children: string;
-  onClick: () => void;
 }
 
 const Button = ({
@@ -11,10 +10,9 @@ const Button = ({
   type,
   color = "BC6C25",
   children = "Submit",
-  onClick,
 }: btnProps) => {
   return (
-    <button type={type} className={className + " bg-[#" + color + "]"} onClick={onClick}>
+    <button type={type} className={className + " bg-[#" + color + "]"}>
       {children}
     </button>
   );
