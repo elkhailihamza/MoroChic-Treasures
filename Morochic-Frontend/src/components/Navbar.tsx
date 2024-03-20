@@ -2,6 +2,7 @@ import Logo from '../components/Logo';
 import Input from '../components/Input';
 import Sidebar from "../components/Sidebar";
 import SidebarItem from "../components/SidebarItem";
+import Dropdown from "../components/Dropdown";
 
 const Navbar = () => {
   return <>
@@ -46,13 +47,27 @@ const Navbar = () => {
       </ul>
     </div>
 
-    <div className='flex gap-5 items-center'>
-    <ul className='sm:hidden block'>
-      <li>
+    <div className='flex gap-2 items-center'>
+    <div className='sm:hidden block'>
+      <button data-dropdown-toggle="searchBar" className='inline-flex transition-all items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      </li>
-    </ul>
-      <button data-drawer-backdrop="false" data-drawer-target="navbar-sidebar" data-drawer-hide="navbar-sidebar" data-drawer-show="navbar-sidebar" data-drawer-placement="right" type="button" className="inline-flex transition-all items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-dropdown" aria-expanded="false">
+      </button>
+      <Dropdown header={<h1 className='font-medium text-[26px] my-5'>Search Bar</h1>} id='searchBar' className='z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-full'>
+      <div className="flex justify-center">
+      <form className='w-5/6'>   
+          <label className="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
+          <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
+              <Input type="search" name="searchBar" className="block p-1 rounded-full ps-10 text-sm text-gray-900 border-2 border-gray-300 border-slate-900 bg-gray-50" placeholder="Looking for something?" />
+              {/* <input  id="default-search" className=""  required /> */}
+          </div>
+      </form>
+      </div>
+      </Dropdown>
+    </div>
+      <button data-drawer-backdrop="false" data-drawer-target="navbar-sidebar" data-drawer-toggle="navbar-sidebar" data-drawer-placement="right" type="button" className="inline-flex transition-all items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-dropdown" aria-expanded="false">
         <span className="sr-only">Open main menu</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
