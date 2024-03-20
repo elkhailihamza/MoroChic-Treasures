@@ -61,24 +61,24 @@ const Navbar = () => {
     </div>
 </nav>
 <Sidebar id="navbar-sidebar" header='Menu'>
-          <SidebarItem header='Dashboard' svg={<svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          aria-hidden="true"
-          className="w-5 h-5"
-        >
-          <path
-            fillRule="evenodd"
-            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-            clipRule="evenodd"
-          ></path>
-        </svg>} />
-          <SidebarItem header='E-Commerce'
+          <div className='md:hidden block'>
+            <SidebarItem header='WishList' svg={
+            <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+}/>
+            <SidebarItem header='Shopping Cart' svg={
+            <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/></svg>
+} />
+            <SidebarItem header='Inbox' svg={
+          <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.5 12H16c-.7 2-2 3-4 3s-3.3-1-4-3H2.5"/><path d="M5.5 5.1L2 12v6c0 1.1.9 2 2 2h16a2 2 0 002-2v-6l-3.4-6.9A2 2 0 0016.8 4H7.2a2 2 0 00-1.8 1.1z"/></svg>
+            } />
+          </div>
+          <SidebarItem header='Catalog'
           svg={<svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill="currentColor"
+            fill="none"
+            stroke='#000000'
+            strokeWidth="2"
             aria-hidden="true"
             className="w-5 h-5"
           >
@@ -89,27 +89,13 @@ const Navbar = () => {
             ></path>
           </svg>}
           />
-          <SidebarItem header='Inbox'
-          svg={<svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
-            className="w-5 h-5"
-          >
-            <path
-              fillRule="evenodd"
-              d="M6.912 3a3 3 0 00-2.868 2.118l-2.411 7.838a3 3 0 00-.133.882V18a3 3 0 003 3h15a3 3 0 003-3v-4.162c0-.299-.045-.596-.133-.882l-2.412-7.838A3 3 0 0017.088 3H6.912zm13.823 9.75l-2.213-7.191A1.5 1.5 0 0017.088 4.5H6.912a1.5 1.5 0 00-1.434 1.059L3.265 12.75H6.11a3 3 0 012.684 1.658l.256.513a1.5 1.5 0 001.342.829h3.218a1.5 1.5 0 001.342-.83l.256-.512a3 3 0 012.684-1.658h2.844z"
-              clipRule="evenodd"
-            ></path>
-          </svg>}
-          />
-
           <SidebarItem header='Profile'
           svg={<svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill="currentColor"
+            fill="none"
+            stroke='#000000'
+            strokeWidth="2"
             aria-hidden="true"
             className="w-5 h-5"
           >
@@ -125,7 +111,9 @@ const Navbar = () => {
             svg={<svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill="currentColor"
+              fill="none"
+            stroke='#000000'
+            strokeWidth="2"
               aria-hidden="true"
               className="w-5 h-5"
             >
@@ -139,7 +127,9 @@ const Navbar = () => {
             <SidebarItem header='Log Out' svg={<svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                fill="currentColor"
+                fill="none"
+                stroke='#000000'
+                strokeWidth="2"
                 aria-hidden="true"
                 className="w-5 h-5"
               >
