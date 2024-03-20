@@ -3,10 +3,10 @@ import Input from "../../components/Input";
 import Header from "../../components/Header";
 import Logo from "../../components/Logo";
 
-const Login = () => {
+const Register = () => {
   return (
     <>
-      <section className="flex flex-col items-center justify-center h-screen">
+      <section className="flex flex-col items-center justify-center">
         <div className="h-4/5 w-4/5">
           <div className="flex justify-center">
             <Logo height={150} width={150} />
@@ -22,12 +22,14 @@ const Login = () => {
                     placeholder="First Name"
                     name="email"
                     type="text"
+                    required
                     className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
                   />
                   <Input
                     placeholder="Last Name"
                     name="email"
                     type="text"
+                    required
                     className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
                   />
                 </div>
@@ -35,6 +37,7 @@ const Login = () => {
                   placeholder="Email"
                   name="email"
                   type="email"
+                  required
                   className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
                 />
                 <div className="flex justify-between gap-2">
@@ -42,19 +45,21 @@ const Login = () => {
                     placeholder="Password"
                     name="password"
                     type="password"
+                    required
                     className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
                   />
                   <Input
                     placeholder="Confirm"
                     name="confirm_password"
                     type="password"
+                    required
                     className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
                   />
                 </div>
               </div>
               <div className="grid mt-5">
                 <span>
-                  Already have an account?
+                  Already have an account?{" "}
                   <a href="/login" className="text-[#BC6C25] hover:underline">
                     Sign-up
                   </a>
@@ -76,4 +81,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

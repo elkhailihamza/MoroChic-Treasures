@@ -1,11 +1,13 @@
 interface InputProps {
-  className: string;
+  className?: string;
   name: string;
-  type:
+  required?: boolean;
+  type?:
     | "text"
     | "password"
     | "number"
     | "email"
+    | "search"
     | "tel"
     | "date"
     | "time"
@@ -15,15 +17,16 @@ interface InputProps {
     | "submit"
     | "reset"
     | "button";
-  placeholder: string;
+  placeholder?: string;
 }
-function Input({ className, name, placeholder }: InputProps) {
+function Input({ className, name, placeholder="placeholder", type="text", required=false }: InputProps) {
   return (
     <input
-      type="text"
+      type={type}
       name={name}
+      required={required}
       placeholder={placeholder}
-      className={className + " w-full"}
+      className={className + " w-full outline-none"}
     />
   );
 }

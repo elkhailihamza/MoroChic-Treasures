@@ -1,14 +1,12 @@
 interface logoProps {
-  width?: number;
-  height?: number;
+  width?: number | 'auto';
 }
 
-function Logo({ width = 100, height = 100}: logoProps) {
+function Logo({ width = 100 }: logoProps) {
   return (
     <>
       <svg
         width={width}
-        height={height}
         viewBox="0 0 81 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

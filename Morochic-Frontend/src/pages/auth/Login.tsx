@@ -6,7 +6,7 @@ import Logo from "../../components/Logo";
 const Login = () => {
   return (
     <>
-      <section className="flex flex-col items-center justify-center h-screen">
+      <section className="flex flex-col items-center justify-center top-0">
         <div className="h-4/5 w-4/5">
           <div className="flex justify-center">
             <Logo height={150} width={150} />
@@ -21,12 +21,14 @@ const Login = () => {
                   placeholder="Email"
                   name="email"
                   type="email"
+                  required
                   className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
                 />
                 <Input
                   placeholder="Password"
                   name="password"
                   type="password"
+                  required
                   className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
                 />
               </div>
