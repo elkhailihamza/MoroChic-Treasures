@@ -76,7 +76,7 @@ const Register = () => {
               <div className="flex justify-center mt-10">
                 <Button
                   type="submit"
-                  className="px-[24px] py-[8px] text-[18px] rounded-sm text-white"
+                  className="px-[24px] py-[8px] text-[18px] bg-[#BC6C25] rounded-sm text-white"
                 >
                   Sign-up
                 </Button>

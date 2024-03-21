@@ -19,7 +19,7 @@ const Sidebar = ({
     <>
       <div
         id={id}
-        className="fixed select-none right-0 top-[67px] z-40 w-72 h-screen overflow-y-auto transition-transform translate-x-full max-w-[20rem] flex-col bg-[#FEFAE0] bg-opacity-30 bg-clip-border p-4 text-gray-700 shadow-md shadow-blue-gray-900/5"
+        className="fixed select-none right-0 top-[65px] z-40 w-72 h-screen overflow-y-auto transition-transform translate-x-full max-w-[20rem] flex-col bg-white bg-clip-border p-4 text-gray-700 shadow-md shadow-blue-gray-900/5"
         data-drawer-backdrop={backdrop}
         data-drawer-hide={close}
         tabIndex={-1}
