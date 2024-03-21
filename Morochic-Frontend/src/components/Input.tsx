@@ -2,6 +2,7 @@ interface InputProps {
   className?: string;
   name: string;
   required?: boolean;
+  autoComplete?: string;
   type?:
     | "text"
     | "password"
@@ -19,12 +20,13 @@ interface InputProps {
     | "button";
   placeholder?: string;
 }
-function Input({ className, name, placeholder="placeholder", type="text", required=false }: InputProps) {
+function Input({ className, name, placeholder="placeholder", type="text", required=false, autoComplete }: InputProps) {
   return (
     <input
       type={type}
       name={name}
       required={required}
+      autoComplete={autoComplete}
       placeholder={placeholder}
       className={className + " w-full outline-none"}
     />
