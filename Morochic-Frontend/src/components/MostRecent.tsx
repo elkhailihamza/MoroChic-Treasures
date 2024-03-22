@@ -8,7 +8,7 @@ import image3 from "../images/carousel-3.svg";
 export const MostRecent = () => {
   return (
     <section className="bg-[#FEFAE0]/40 mb-20">
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-10 mb-7">
         <h1 className="font-bold doppio-one-regular md:text-[28px]">
           Most Recent
         </h1>
