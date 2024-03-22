@@ -1,9 +1,13 @@
-import { Slider } from "../../components/Slider"
+import { MostRecent } from "../../components/MostRecent";
+import { Slider } from "../../components/Slider";
 
 const Home = () => {
   return (
-    <Slider />
-  )
-}
+    <>
+      <Slider />
+      <MostRecent />  
+    </>
+  );
+};
 
-export default Home
+export default Home;

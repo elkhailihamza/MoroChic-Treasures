@@ -9,7 +9,7 @@ import image5 from "../images/carousel-5.svg";
 export const Slider = () => {
   return (
     <div
-      id="default-carousel"
+      id="main-carousel"
       className="relative w-full m-0 p-0"
       data-carousel="slide"
     >
@@ -29,7 +29,6 @@ export const Slider = () => {
             </span>
             <div className="md:w-44 w-28 md:mt-10 mt-5">
               <Button
-                type="submit"
                 className="md:py-3 py-1 bg-[#606C38] rounded-sm text-white"
               >
                 Buy
@@ -52,7 +51,6 @@ export const Slider = () => {
             </span>
             <div className="md:w-44 w-28 md:mt-10 mt-5">
               <Button
-                type="submit"
                 className="md:py-3 py-1 bg-[#606C38] rounded-sm text-white"
               >
                 Buy
@@ -75,7 +73,6 @@ export const Slider = () => {
             </span>
             <div className="md:w-44 w-28 md:mt-10 mt-5">
               <Button
-                type="submit"
                 className="md:py-3 py-1 bg-[#606C38] rounded-sm text-white"
               >
                 Buy
@@ -98,7 +95,6 @@ export const Slider = () => {
             </span>
             <div className="md:w-44 w-28 md:mt-10 mt-5">
               <Button
-                type="submit"
                 className="md:py-3 py-1 bg-[#606C38] rounded-sm text-white"
               >
                 Buy
@@ -121,7 +117,6 @@ export const Slider = () => {
             </span>
             <div className="md:w-44 w-28 md:mt-10 mt-5">
               <Button
-                type="submit"
                 className="md:py-3 py-1 bg-[#606C38] rounded-sm text-white"
               >
                 Buy

@@ -1,13 +1,13 @@
 interface btnProps {
-  className: string;
-  type: "submit" | "reset" | "button";
-  children: string;
+  className?: string;
+  type?: "submit" | "reset" | "button";
+  children?: string;
 }
 
 const Button = ({
   className,
-  type,
-  children = "Submit",
+  type = "button",
+  children,
 }: btnProps) => {
   return (
     <button type={type} className={className + ' w-full'}>
