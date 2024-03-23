@@ -29,7 +29,8 @@ export const Slider = () => {
             </span>
             <div className="md:w-44 w-28 md:mt-10 mt-5">
               <Button
-                className="md:py-3 py-1 bg-[#606C38] rounded-sm text-white"
+                color="#606C38"
+                className="md:py-3 py-1 w-full rounded-sm text-white"
               >
                 Buy
               </Button>
@@ -51,7 +52,8 @@ export const Slider = () => {
             </span>
             <div className="md:w-44 w-28 md:mt-10 mt-5">
               <Button
-                className="md:py-3 py-1 bg-[#606C38] rounded-sm text-white"
+                color="#606C38"
+                className="md:py-3 py-1 w-full rounded-sm text-white"
               >
                 Buy
               </Button>
@@ -73,7 +75,8 @@ export const Slider = () => {
             </span>
             <div className="md:w-44 w-28 md:mt-10 mt-5">
               <Button
-                className="md:py-3 py-1 bg-[#606C38] rounded-sm text-white"
+                color="#606C38"
+                className="md:py-3 py-1 w-full rounded-sm text-white"
               >
                 Buy
               </Button>
@@ -95,7 +98,8 @@ export const Slider = () => {
             </span>
             <div className="md:w-44 w-28 md:mt-10 mt-5">
               <Button
-                className="md:py-3 py-1 bg-[#606C38] rounded-sm text-white"
+                color="#606C38"
+                className="md:py-3 py-1 w-full rounded-sm text-white"
               >
                 Buy
               </Button>
@@ -117,7 +121,8 @@ export const Slider = () => {
             </span>
             <div className="md:w-44 w-28 md:mt-10 mt-5">
               <Button
-                className="md:py-3 py-1 bg-[#606C38] rounded-sm text-white"
+                color="#606C38"
+                className="md:py-3 py-1 w-full rounded-sm text-white"
               >
                 Buy
               </Button>

@@ -18,26 +18,26 @@ export const MostRecent = () => {
         id="most-recent-carousel"
         className="relative flex justify-center w-full m-0"
       >
-        <div className="carousel divide-x divide-gray-200 md:divide-2 lg:divide-3 overflow-y-hidden h-full">
+        <div className="carousel overflow-y-hidden h-full">
           <div
             className="carousel-item w-full flex justify-center"
             data-carousel-item
           >
             <div className="flex flex-wrap justify-center items-center h-full lg:gap-16 gap-2 mt-2">
               <Card image={image1} className={"flex flex-col md:w-[200px] w-[140px] bg-white hover:bg-gray-100"}>
-                <Button className="bg-[#606C38] py-3 text-white">Buy</Button>
+                <Button color="#606C38" className="py-3 text-white">Buy</Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>
               </Card>
               <Card image={image2} className={"flex flex-col md:w-[200px] w-[140px] bg-white hover:bg-gray-100"}>
-                <Button className="bg-[#606C38] py-3 text-white">Buy</Button>
+                <Button color="#606C38" className="bg-[#606C38] py-3 text-white">Buy</Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>
               </Card>
               <Card image={image3} className={"flex flex-col md:w-[200px] w-[140px] bg-white hover:bg-gray-100"}>
-                <Button className="bg-[#606C38] py-3 text-white">Buy</Button>
+                <Button color="#606C38" className="bg-[#606C38] py-3 text-white">Buy</Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>
@@ -50,19 +50,19 @@ export const MostRecent = () => {
           >
             <div className="flex flex-wrap justify-center items-center h-full lg:gap-16 gap-2 mt-2">
               <Card image={image1} className={"flex flex-col md:w-[200px] w-[140px] bg-white hover:bg-gray-100"}>
-                <Button className="bg-[#606C38] py-3 text-white">Buy</Button>
+                <Button color="#606C38" className="bg-[#606C38] py-3 text-white">Buy</Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>
               </Card>
               <Card image={image2} className={"flex flex-col md:w-[200px] w-[140px] bg-white hover:bg-gray-100"}>
-                <Button className="bg-[#606C38] py-3 text-white">Buy</Button>
+                <Button color="#606C38" className="bg-[#606C38] py-3 text-white">Buy</Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>
               </Card>
               <Card image={image3} className={"flex flex-col md:w-[200px] w-[140px] bg-white hover:bg-gray-100"}>
-                <Button className="bg-[#606C38] py-3 text-white">Buy</Button>
+                <Button color="#606C38" className="bg-[#606C38] py-3 text-white">Buy</Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>
