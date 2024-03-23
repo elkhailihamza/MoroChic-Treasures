@@ -26,12 +26,12 @@ export const AboutUs = () => {
                 Craftsmanship and style
               </p>
             </div>
-            <div className="h-full w-full xl:mb-4">
+            <div className="h-full w-full xl:mb-4 leading-relaxed tracking-wide">
               <p className="mt-3 xl:mb-7 mb-3">
                 Step into the rich tapestry of tradition with MoroChic, where
                 every garment is a testament to the beauty of cultural heritage.
               </p>
-              <p className="md:block hidden">
+              <p className="md:block hidden md:mb-4">
                 Our curated selection of traditional clothing captures the
                 essence of craftsmanship, offering a mesmerizing journey through
                 centuries-old techniques and artistic expression.
