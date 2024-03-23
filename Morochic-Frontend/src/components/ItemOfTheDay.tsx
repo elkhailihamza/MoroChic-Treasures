@@ -3,7 +3,7 @@ import Button from "./Button";
 
 export const ItemOfTheDay = () => {
   return (
-    <section className="bg-[#283618] text-white border-t-4 border-black">
+    <section className="bg-[#283618] text-white border-t-4 border-y-2 border-black">
       <div className="w-full text-center p-10">
         <h1 className="doppio-one-regular text-[30px]">Item of the day</h1>
       </div>
@@ -23,7 +23,7 @@ export const ItemOfTheDay = () => {
                 dignissimos molestias voluptate doloremque alias, temporibus
                 aliquid nam repellendus.
               </div>
-              <div className="flex md:justify-center gap-5">
+              <div className="flex md:justify-center gap-5 mb-4">
                 <Button className="px-10 py-2 text-[20px]">Checkout</Button>
                 <Button color="#606C38" className="px-3 sm:text-[16px] text-[14px]">
                   View more like it
@@ -31,7 +31,7 @@ export const ItemOfTheDay = () => {
               </div>
             </div>
           </div>
-          <div className="w-[300px] h-[300px]">
+          <div className="w-[300px] h-[300px] mb-7">
             <img
               className="w-[300px] h-[300px] object-cover rounded-lg"
               src={image1}
