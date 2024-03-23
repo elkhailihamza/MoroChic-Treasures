@@ -10,6 +10,10 @@
   font-family: "Doppio One", sans-serif;
 }
 
+.style-script-regular {
+  font-family: "Style Script", sans-serif;
+}
+
 /* clears the ‘X’ from Internet Explorer */
 input[type="search"]::-ms-clear {
   display: none;

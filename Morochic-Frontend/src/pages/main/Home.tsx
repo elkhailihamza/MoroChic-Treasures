@@ -1,3 +1,4 @@
+import { AboutUs } from "../../components/AboutUs";
 import { MostRecent } from "../../components/MostRecent";
 import { PopularCategories } from "../../components/PopularCategories";
 import { Slider } from "../../components/Slider";
@@ -7,7 +8,8 @@ const Home = () => {
     <>
       <Slider />
       <MostRecent />  
-      <PopularCategories /> 
+      <PopularCategories />
+      <AboutUs />
     </>
   );
 };

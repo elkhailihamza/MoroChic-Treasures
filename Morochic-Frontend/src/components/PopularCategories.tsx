@@ -22,7 +22,7 @@ export const PopularCategories = () => {
               </div>
               <div className="grid w-full">
                 <h1 className="text-[28px]">Category 1</h1>
-                <p className="md:whitespace-normal truncate">
+                <p className="md:whitespace-normal truncate text-[#969696]">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
                   libero voluptatem porro amet aspernatur.
                 </p>
@@ -41,7 +41,7 @@ export const PopularCategories = () => {
               </div>
               <div className="grid w-full">
                 <h1 className="text-[28px]">Category 2</h1>
-                <p className="md:whitespace-normal truncate">
+                <p className="md:whitespace-normal truncate text-[#969696]">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
                   libero voluptatem porro amet aspernatur.
                 </p>
