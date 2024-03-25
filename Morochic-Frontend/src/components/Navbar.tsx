@@ -1,4 +1,4 @@
-import Logo from '../components/Logo';
+import HeaderLogo from './HeaderLogo';
 import Input from '../components/Input';
 import Sidebar from "../components/Sidebar";
 import SidebarItem from "../components/SidebarItem";
@@ -9,7 +9,7 @@ const Navbar = () => {
 <nav className="bg-[#FEFAE0] bg-opacity-30">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
     <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-        <Logo width={140} />
+        <HeaderLogo width={140} />
     </a>
     
     <div className='w-1/2 sm:block hidden'>     

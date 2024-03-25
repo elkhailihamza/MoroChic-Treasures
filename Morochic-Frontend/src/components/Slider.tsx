@@ -145,10 +145,10 @@ export const Slider = () => {
             <path
               d="M14.25 26.5L1.75 14L14.25 1.5"
               stroke="#FEFAE0"
-              stroke-opacity="0.3"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeOpacity="0.3"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <span className="sr-only">Previous</span>
@@ -169,10 +169,10 @@ export const Slider = () => {
             <path
               d="M1.75 26.5L14.25 14L1.75 1.5"
               stroke="#FEFAE0"
-              stroke-opacity="0.3"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeOpacity="0.3"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <span className="sr-only">Next</span>

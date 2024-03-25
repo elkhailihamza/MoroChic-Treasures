@@ -85,10 +85,10 @@ export const MostRecent = () => {
               <path
                 d="M14.25 26.5L1.75 14L14.25 1.5"
                 stroke="#0000007F"
-                stroke-opacity="0.3"
-                stroke-width="4.17"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeOpacity="0.3"
+                strokeWidth="4.17"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             <span className="sr-only">Previous</span>
@@ -109,10 +109,10 @@ export const MostRecent = () => {
               <path
                 d="M1.75 26.5L14.25 14L1.75 1.5"
                 stroke="#0000007F"
-                stroke-opacity="0.3"
-                stroke-width="4.17"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeOpacity="0.3"
+                strokeWidth="4.17"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             <span className="sr-only">Next</span>

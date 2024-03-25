@@ -1,8 +1,8 @@
-interface logoProps {
+interface headerlogoProps {
   width?: number | 'auto';
 }
 
-function Logo({ width = 100 }: logoProps) {
+function HeaderLogo({ width = 100 }: headerlogoProps) {
   return (
     <>
       <svg
@@ -40,4 +40,4 @@ function Logo({ width = 100 }: logoProps) {
   );
 }
 
-export default Logo;
+export default HeaderLogo;

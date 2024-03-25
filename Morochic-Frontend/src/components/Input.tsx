@@ -3,6 +3,8 @@ interface InputProps {
   name: string;
   required?: boolean;
   autoComplete?: string;
+  max?: number;
+  min?: number;
   type?:
     | "text"
     | "password"
@@ -20,11 +22,22 @@ interface InputProps {
     | "button";
   placeholder?: string;
 }
-function Input({ className, name, placeholder="placeholder", type="text", required=false, autoComplete }: InputProps) {
+function Input({
+  className,
+  name,
+  placeholder = "placeholder",
+  type = "text",
+  required = false,
+  autoComplete,
+  max,
+  min,
+}: InputProps) {
   return (
     <input
       type={type}
       name={name}
+      maxLength={max}
+      minLength={min}
       required={required}
       autoComplete={autoComplete}
       placeholder={placeholder}

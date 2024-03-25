@@ -14,6 +14,10 @@
   font-family: "Style Script", sans-serif;
 }
 
+.dm-sans {
+  font-family: "DM Sans", sans-serif;
+}
+
 /* clears the ‘X’ from Internet Explorer */
 input[type="search"]::-ms-clear {
   display: none;
