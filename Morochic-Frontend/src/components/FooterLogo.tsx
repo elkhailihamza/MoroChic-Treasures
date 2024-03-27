@@ -1,8 +1,8 @@
 interface footerlogoprops {
-    width?: number;
+    width?: number | 'auto';
 }
 
-export const FooterLogo = ({width = 139}: footerlogoprops) => {
+export const FooterLogo = ({width = 'auto'}: footerlogoprops) => {
   return (
     <svg
       width={width}

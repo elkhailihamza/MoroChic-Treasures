@@ -30,12 +30,12 @@ export const Footer = () => {
   return (
     <section className="bg-[#000000]">
       <div className="w-full flex justify-center">
-        <div className="w-5/6 px-10 pt-10 pb-2">
-          <div className="flex justify-between">
-            <div>
-              <FooterLogo width={225}></FooterLogo>
+        <div className="w-5/6 md:px-10 md:pt-10 pt-5 pb-2">
+          <div className="flex md:justify-between justify-center md:mb-[16px] mb-[8px]">
+            <div className="lg:w-[225px] md:w-[150px] w-[125px] h-16">
+              <FooterLogo />
             </div>
-            <div className="mt-7">
+            <div className="mt-7 md:block hidden">
               <div className="flex justify-center items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,15 +71,15 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex justify-around px-16 gap-16 mt-7 divide-x">
+          <div className="flex sm:flex-row flex-col justify-around sm:px-16 px-7 sm:gap-16 gap-5 divide-x">
             <div>
               <Sublinks header="What is MoroChic" links={FirstLinks}></Sublinks>
             </div>
-            <div />
+            <div className="lg:block hidden" />
             <div className="border-none">
               <Sublinks header="MoroChic Help" links={SecondLinks}></Sublinks>
             </div>
-            <div />
+            <div className="lg:block hidden" />
             <div className="border-none">
               <Sublinks header="Legal & Stuff" links={ThirdLinks}></Sublinks>
             </div>
@@ -87,11 +87,22 @@ export const Footer = () => {
           <div className="px-4 mt-6">
             <hr />
           </div>
-          <div className="flex flex-col justify-center items-center mt-5 gap-5">
-            <Socialmediaicons />
+          <div className="flex justify-center mt-5">
+            <div className="flex flex-col items-center lg:w-[190px] md:w-[150px] w-[125px] gap-2">
+              <div
+                className={
+                  "text-white lg:text-[20px] md:text-[16px] text-[13px]"
+                }
+              >
+                Follow us on
+              </div>
+              <Socialmediaicons />
+            </div>
           </div>
-          <div className="text-center text-white mt-8">
-            <h1 className="font-medium">© Copyright, All rights reserved.</h1>
+          <div className="text-center text-white mt-7">
+            <h1 className="font-medium md:text-[16px] text-[13px]">
+              © Copyright, All rights reserved.
+            </h1>
           </div>
         </div>
       </div>

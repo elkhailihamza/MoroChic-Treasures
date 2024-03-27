@@ -2,7 +2,7 @@ interface headerlogoProps {
   width?: number | 'auto';
 }
 
-function HeaderLogo({ width = 100 }: headerlogoProps) {
+function HeaderLogo({ width = 'auto' }: headerlogoProps) {
   return (
     <>
       <svg
