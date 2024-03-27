@@ -28,7 +28,7 @@ export const Footer = () => {
     ],
   ];
   return (
-    <section className="bg-[#000000]">
+    <section className="bg-[#000000] lg:text-[20px] md:text-[16px] text-[13px]">
       <div className="w-full flex justify-center">
         <div className="w-5/6 md:px-10 md:pt-10 pt-5 pb-2">
           <div className="flex md:justify-between justify-center md:mb-[16px] mb-[8px]">
@@ -64,6 +64,7 @@ export const Footer = () => {
               <div className="flex justify-center mt-2">
                 <Button
                   color="#283618"
+                  base = {false}
                   className="px-5 py-1 rounded-lg text-white"
                 >
                   Subscribe
@@ -91,7 +92,7 @@ export const Footer = () => {
             <div className="flex flex-col items-center lg:w-[190px] md:w-[150px] w-[125px] gap-2">
               <h1
                 className={
-                  "text-white lg:text-[20px] md:text-[16px] text-[13px]"
+                  "text-white"
                 }
               >
                 Follow us on
@@ -100,7 +101,7 @@ export const Footer = () => {
             </div>
           </div>
           <div className="text-center text-white mt-7">
-            <h1 className="md:font-medium md:text-[16px] text-[11px] text-[#E5E5E5]/75">
+            <h1 className="md:font-medium md:text-[13px] text-[11px] text-[#E5E5E5]/75">
               © Copyright, All rights reserved.
             </h1>
           </div>
