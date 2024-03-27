@@ -100,7 +100,7 @@ export const Footer = () => {
             </div>
           </div>
           <div className="text-center text-white mt-7">
-            <h1 className="font-medium md:text-[16px] text-[13px]">
+            <h1 className="md:font-medium md:text-[16px] text-[11px]">
               © Copyright, All rights reserved.
             </h1>
           </div>
