@@ -89,18 +89,18 @@ export const Footer = () => {
           </div>
           <div className="flex justify-center mt-5">
             <div className="flex flex-col items-center lg:w-[190px] md:w-[150px] w-[125px] gap-2">
-              <div
+              <h1
                 className={
                   "text-white lg:text-[20px] md:text-[16px] text-[13px]"
                 }
               >
                 Follow us on
-              </div>
+              </h1>
               <Socialmediaicons />
             </div>
           </div>
           <div className="text-center text-white mt-7">
-            <h1 className="md:font-medium md:text-[16px] text-[11px]">
+            <h1 className="md:font-medium md:text-[16px] text-[11px] text-[#E5E5E5]/75">
               © Copyright, All rights reserved.
             </h1>
           </div>
