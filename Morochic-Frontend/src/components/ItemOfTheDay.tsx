@@ -24,8 +24,8 @@ export const ItemOfTheDay = () => {
                 aliquid nam repellendus.
               </p>
               <div className="flex md:justify-center gap-5 mb-4">
-                <Button className="px-10 py-2">Checkout</Button>
-                <Button color="#606C38" className="px-3">
+                <Button>Checkout</Button>
+                <Button color="#606C38">
                   View more like it
                 </Button>
               </div>
