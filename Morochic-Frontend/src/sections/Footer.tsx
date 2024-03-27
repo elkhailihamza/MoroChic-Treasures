@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import Button from "./Button";
-import { FooterLogo } from "./FooterLogo";
-import Input from "./Input";
-import { Sublinks } from "./Sublinks";
-import { Socialmediaicons } from "./Socialmediaicons";
+import Button from "../components/Button";
+import { FooterLogo } from "../components/FooterLogo";
+import Input from "../components/Input";
+import { Sublinks } from "../components/Sublinks";
+import { Socialmediaicons } from "../components/Socialmediaicons";
 
 export const Footer = () => {
   useEffect(() => {});

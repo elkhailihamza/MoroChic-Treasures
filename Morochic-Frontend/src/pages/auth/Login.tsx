@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 
 import Button from "../../components/Button";
 import Input from "../../components/Input";
-import Header from "../../components/Header";
-import Logo from "../../components/HeaderLogo";
+import Logo from "../../components/NavbarLogo";
 
 const Login = () => {
   return (
@@ -15,7 +14,7 @@ const Login = () => {
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
             <div className="flex justify-center">
-              <Header className="text-[28px] mb-5">Login</Header>
+              <h1 className="text-[28px] mb-5">Login</h1>
             </div>
             <form className="sm:w-[400px] w-full" method="post" action="">
               <div className="flex flex-col align-center justify-center gap-5">

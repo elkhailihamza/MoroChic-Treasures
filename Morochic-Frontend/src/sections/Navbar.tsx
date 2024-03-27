@@ -1,4 +1,4 @@
-import HeaderLogo from "./HeaderLogo";
+import HeaderLogo from "../components/NavbarLogo";
 import Input from "../components/Input";
 import Sidebar from "../components/Sidebar";
 import SidebarItem from "../components/SidebarItem";

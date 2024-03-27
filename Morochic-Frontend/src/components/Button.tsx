@@ -14,7 +14,7 @@ const Button = ({
   base = true,
 }: btnProps) => {
   return (
-    <button type={type} className={`${className} ${base && "lg:py-[30px] lg:px-[24px] lg:text-[20px] md:py-[16px] md:px-[16px] md:text-[16px] py-[13px] px-[8px] text-[13px] font-semibold rounded text-white hover:underline"} bg-[${color}]`}>
+    <button type={type} className={`${className} ${base && "lg:py-[16px] lg:px-[20px] md:py-[16px] md:px-[16px] md:text-[16px] py-[13px] px-[13px] text-[13px] font-semibold rounded text-white hover:underline"} bg-[${color}]`}>
       {children}
     </button>
   );

@@ -1,10 +1,10 @@
-import Button from "./Button";
+import Button from "../components/Button";
 
 import image1 from "../images/carousel-1.svg";
 
 export const AboutUs = () => {
   return (
-    <section className="bg-[FEFAE0] flex flex-col md:text-[16px] text-[13px] justify-center align-center">
+    <section className="bg-[FEFAE0] flex flex-col lg:text-[20px] md:text-[16px] text-[13px] justify-center align-center mb-10">
       <div className="text-center">
         <h1 className="style-script-regular text-[#606C38] text-[46px] translate-y-4">
           about us
@@ -42,7 +42,7 @@ export const AboutUs = () => {
                 Click here to uncover the stories behind our brand and the
                 artisans who bring our vision to life.
               </p>
-              <Button className="text-white md:px-[48px] md:py-[48px] px-[44px] py-[44px]">
+              <Button className="text-white">
                 Know more about us
               </Button>
             </div>

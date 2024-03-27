@@ -1,8 +1,8 @@
-import { AboutUs } from "../../components/AboutUs";
-import { ItemOfTheDay } from "../../components/ItemOfTheDay";
-import { MostRecent } from "../../components/MostRecent";
-import { PopularCategories } from "../../components/PopularCategories";
-import { Slider } from "../../components/Slider";
+import { AboutUs } from "../../sections/AboutUs";
+import { ItemOfTheDay } from "../../sections/ItemOfTheDay";
+import { MostRecent } from "../../sections/MostRecent";
+import { PopularCategories } from "../../sections/PopularCategories";
+import { Slider } from "../../sections/Slider";
 
 const Home = () => {
   return (

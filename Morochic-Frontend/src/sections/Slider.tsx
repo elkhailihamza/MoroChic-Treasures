@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "../components/Button";
 
 import image1 from "../images/carousel-1.svg";
 import image2 from "../images/carousel-2.svg";
@@ -10,7 +10,7 @@ export const Slider = () => {
   return (
     <div
       id="main-carousel"
-      className="relative w-full m-0 p-0"
+      className="relative w-full m-0 p-0 lg:text-[20px] md:text-[16px] text-[13px]"
       data-carousel="slide"
     >
       <div className="relative h-56 overflow-hidden md:h-96">
@@ -20,17 +20,42 @@ export const Slider = () => {
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
-          <div className="relative w-60 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-16 left-20">
-            <h1 className="font-medium md:text-[28px] text-[20px]">
+          <div className="relative md:w-60 w-28 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-20 left-20">
+            <h1 className="font-medium  lg:text-[22px] md:text-[16px] text-[13px]">
               Something Text
             </h1>
-            <span className="font-regular md:text-[20px] text-[16px]">
+            <span className="font-regular md:text-[16px] text-[13px]">
               <span className="text-[#DDA15E]">$</span>99,99
             </span>
-            <div className="md:w-44 w-28 md:mt-10 mt-5">
+            <div className="md:w-44 w-24 md:mt-10 mt-5">
               <Button
                 color="#606C38"
-                className="md:py-3 py-1 w-full rounded-sm text-white"
+                base={false}
+                className="py-1 w-full rounded-sm text-white"
+              >
+                Buy
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="hidden duration-1250 ease-in-out" data-carousel-item>
+          <img
+            src={image1}
+            className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            alt="..."
+          />
+          <div className="relative md:w-60 w-28 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-20 left-20">
+            <h1 className="font-medium  lg:text-[22px] md:text-[16px] text-[13px]">
+              Something Text
+            </h1>
+            <span className="font-regular md:text-[16px] text-[13px]">
+              <span className="text-[#DDA15E]">$</span>99,99
+            </span>
+            <div className="md:w-44 w-24 md:mt-10 mt-5">
+              <Button
+                color="#606C38"
+                base={false}
+                className="py-1 w-full rounded-sm text-white"
               >
                 Buy
               </Button>
@@ -43,17 +68,18 @@ export const Slider = () => {
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
-          <div className="relative w-60 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-16 left-20">
-            <h1 className="font-medium md:text-[28px] text-[20px]">
+          <div className="relative md:w-60 w-28 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-20 left-20">
+            <h1 className="font-medium  lg:text-[22px] md:text-[16px] text-[13px]">
               Something Text
             </h1>
-            <span className="font-regular md:text-[20px] text-[16px]">
+            <span className="font-regular md:text-[16px] text-[13px]">
               <span className="text-[#DDA15E]">$</span>99,99
             </span>
-            <div className="md:w-44 w-28 md:mt-10 mt-5">
+            <div className="md:w-44 w-24 md:mt-10 mt-5">
               <Button
                 color="#606C38"
-                className="md:py-3 py-1 w-full rounded-sm text-white"
+                base={false}
+                className="py-1 w-full rounded-sm text-white"
               >
                 Buy
               </Button>
@@ -66,17 +92,18 @@ export const Slider = () => {
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
-          <div className="relative w-60 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-16 left-20">
-            <h1 className="font-medium md:text-[28px] text-[20px]">
+          <div className="relative md:w-60 w-28 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-20 left-20">
+            <h1 className="font-medium  lg:text-[22px] md:text-[16px] text-[13px]">
               Something Text
             </h1>
-            <span className="font-regular md:text-[20px] text-[16px]">
+            <span className="font-regular md:text-[16px] text-[13px]">
               <span className="text-[#DDA15E]">$</span>99,99
             </span>
-            <div className="md:w-44 w-28 md:mt-10 mt-5">
+            <div className="md:w-44 w-24 md:mt-10 mt-5">
               <Button
                 color="#606C38"
-                className="md:py-3 py-1 w-full rounded-sm text-white"
+                base={false}
+                className="py-1 w-full rounded-sm text-white"
               >
                 Buy
               </Button>
@@ -89,17 +116,18 @@ export const Slider = () => {
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
-          <div className="relative w-60 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-16 left-20">
-            <h1 className="font-medium md:text-[28px] text-[20px]">
+          <div className="relative md:w-60 w-28 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-20 left-20">
+            <h1 className="font-medium  lg:text-[22px] md:text-[16px] text-[13px]">
               Something Text
             </h1>
-            <span className="font-regular md:text-[20px] text-[16px]">
+            <span className="font-regular md:text-[16px] text-[13px]">
               <span className="text-[#DDA15E]">$</span>99,99
             </span>
-            <div className="md:w-44 w-28 md:mt-10 mt-5">
+            <div className="md:w-44 w-24 md:mt-10 mt-5">
               <Button
                 color="#606C38"
-                className="md:py-3 py-1 w-full rounded-sm text-white"
+                base={false}
+                className="py-1 w-full rounded-sm text-white"
               >
                 Buy
               </Button>
@@ -112,17 +140,18 @@ export const Slider = () => {
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
-          <div className="relative w-60 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-16 left-20">
-            <h1 className="font-medium md:text-[28px] text-[20px]">
+          <div className="relative md:w-60 w-28 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-20 left-20">
+            <h1 className="font-medium  lg:text-[22px] md:text-[16px] text-[13px]">
               Something Text
             </h1>
-            <span className="font-regular md:text-[20px] text-[16px]">
+            <span className="font-regular md:text-[16px] text-[13px]">
               <span className="text-[#DDA15E]">$</span>99,99
             </span>
-            <div className="md:w-44 w-28 md:mt-10 mt-5">
+            <div className="md:w-44 w-24 md:mt-10 mt-5">
               <Button
                 color="#606C38"
-                className="md:py-3 py-1 w-full rounded-sm text-white"
+                base={false}
+                className="py-1 w-full rounded-sm text-white"
               >
                 Buy
               </Button>
