@@ -1,8 +1,8 @@
-import { AboutUs } from "../../sections/AboutSection";
-import { ItemOfTheDay } from "../../sections/ItemOfTheDaySection";
-import { MostRecent } from "../../sections/MostRecentSection";
-import { PopularCategories } from "../../sections/PopularCategoriesSection";
-import { Slider } from "../../sections/SliderSection";
+import { AboutUs } from "../../sections/home/AboutSection";
+import { ItemOfTheDay } from "../../sections/home/ItemOfTheDaySection";
+import { MostRecent } from "../../sections/home/MostRecentSection";
+import { PopularCategories } from "../../sections/home/PopularCategoriesSection";
+import { Slider } from "../../sections/home/SliderSection";
 
 const Home = () => {
   return (

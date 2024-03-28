@@ -28,14 +28,14 @@ export const Footer = () => {
     ],
   ];
   return (
-    <section className="bg-[#000000] lg:text-[20px] md:text-[16px] text-[13px]">
+    <section className="bg-[#000000]">
       <div className="w-full flex justify-center">
         <div className="w-5/6 md:px-10 md:pt-10 pt-5 pb-2">
           <div className="flex md:justify-between justify-center md:mb-[16px] mb-[8px]">
             <div className="lg:w-[225px] md:w-[150px] w-[125px] h-16">
               <FooterLogo />
             </div>
-            <div className="mt-7 md:block hidden">
+            <div className="mt-7 mb-10 md:block hidden">
               <div className="flex justify-center items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -1,9 +1,9 @@
-import { Card } from "../components/Card";
-import Button from "../components/Button";
+import { Card } from "../../components/Card";
+import Button from "../../components/Button";
 
-import image1 from "../images/carousel-1.svg";
-import image2 from "../images/carousel-2.svg";
-import image3 from "../images/carousel-3.svg";
+import image1 from "../../images/carousel-1.svg";
+import image2 from "../../images/carousel-2.svg";
+import image3 from "../../images/carousel-3.svg";
 
 export const MostRecent = () => {
   return (

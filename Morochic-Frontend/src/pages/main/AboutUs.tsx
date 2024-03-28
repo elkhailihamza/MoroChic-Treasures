@@ -1,6 +1,9 @@
+import { WhoWeAreSection } from "../../sections/about/WhoWeAreSection"
 
 export const AboutUs = () => {
   return (
-    <div>About-us</div>
+    <>
+      <WhoWeAreSection />
+    </>
   )
 }

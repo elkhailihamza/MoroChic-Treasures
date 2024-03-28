@@ -1,10 +1,10 @@
-import Button from "../components/Button";
+import Button from "../../components/Button";
 
-import image1 from "../images/carousel-1.svg";
-import image2 from "../images/carousel-2.svg";
-import image3 from "../images/carousel-3.svg";
-import image4 from "../images/carousel-4.svg";
-import image5 from "../images/carousel-5.svg";
+import image1 from "../../images/carousel-1.svg";
+import image2 from "../../images/carousel-2.svg";
+import image3 from "../../images/carousel-3.svg";
+import image4 from "../../images/carousel-4.svg";
+import image5 from "../../images/carousel-5.svg";
 
 export const Slider = () => {
   return (

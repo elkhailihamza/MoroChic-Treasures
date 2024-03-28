@@ -10,7 +10,7 @@ const Navbar = () => {
       <nav className="bg-[#FEFAE0] bg-opacity-30">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
           <a
-            href="#"
+            href="/"
             className="flex items-center space-x-3 md:w-[140px] w-[100px] rtl:space-x-reverse"
           >
             <HeaderLogo />

@@ -1,9 +1,9 @@
-import image1 from "../images/carousel-1.svg";
-import Button from "../components/Button";
+import image1 from "../../images/carousel-1.svg";
+import Button from "../../components/Button";
 
 export const ItemOfTheDay = () => {
   return (
-    <section className="bg-[#283618] text-white lg:text-[20px] md:text-[16px] text-[13px] border-t-4 border-y-2 border-black">
+    <section className="bg-[#283618] text-white border-t-4 border-y-2 border-black">
       <div className="w-full text-center md:p-10 p-5">
         <h1 className="doppio-one-regular md:text-[30px] text-[20px]">
           Item of the day

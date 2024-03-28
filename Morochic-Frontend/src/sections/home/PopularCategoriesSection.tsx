@@ -1,7 +1,7 @@
-import Button from "../components/Button";
+import Button from "../../components/Button";
 
-import image1 from "../images/carousel-1.svg";
-import image2 from "../images/carousel-2.svg";
+import image1 from "../../images/carousel-1.svg";
+import image2 from "../../images/carousel-2.svg";
 
 export const PopularCategories = () => {
   return (
