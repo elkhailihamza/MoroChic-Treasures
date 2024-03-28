@@ -125,8 +125,8 @@ export const Slider = () => {
             </span>
             <div className="md:w-44 w-24 md:mt-10 mt-5">
               <Button
-                color="#606C38"
                 base={false}
+                color="#606C38"
                 className="py-1 w-full rounded-sm text-white"
               >
                 Buy
