@@ -1,8 +1,8 @@
 interface socialmediaiconsProps {
-  width?: number | "auto";
+  width?: number | "100%";
 }
 
-export const Socialmediaicons = ({ width = "auto" }: socialmediaiconsProps) => {
+export const Socialmediaicons = ({ width = "100%" }: socialmediaiconsProps) => {
   return (
     <>
       <div>

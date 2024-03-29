@@ -1,8 +1,8 @@
 interface headerlogoProps {
-  width?: number | 'auto';
+  width?: number | "100%";
 }
 
-function HeaderLogo({ width = 'auto' }: headerlogoProps) {
+function HeaderLogo({ width = "100%" }: headerlogoProps) {
   return (
     <>
       <svg

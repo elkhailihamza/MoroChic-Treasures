@@ -1,6 +1,6 @@
 export const WhoWeAreSection = () => {
   return (
-    <section className="bg-[#FEFAE0]/30 mb-10">
+    <section>
       <div className="flex justify-center">
         <div className="text-center md:w-4/5 sm:w-5/6 pt-20">
           <h1 className="text-[#606C38] lg:text-[36px] md:text-[30px] text-[22px] font-medium">
@@ -12,9 +12,6 @@ export const WhoWeAreSection = () => {
             intricate patterns, and centuries-old craftsmanship that define
             Moroccan attire.
           </p>
-          <div className="px-2">
-            <hr />
-          </div>
         </div>
       </div>
     </section>
