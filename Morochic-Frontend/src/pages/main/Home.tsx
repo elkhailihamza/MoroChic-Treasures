@@ -1,14 +1,14 @@
+import { Slider } from "../../sections/home/SliderSection";
 import { AboutUs } from "../../sections/home/AboutSection";
 import { ItemOfTheDay } from "../../sections/home/ItemOfTheDaySection";
 import { MostRecent } from "../../sections/home/MostRecentSection";
 import { PopularCategories } from "../../sections/home/PopularCategoriesSection";
-import { Slider } from "../../sections/home/SliderSection";
 
 const Home = () => {
   return (
     <>
       <Slider />
-      <MostRecent />  
+      <MostRecent />
       <PopularCategories />
       <AboutUs />
       <ItemOfTheDay />

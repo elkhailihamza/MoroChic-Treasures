@@ -1,10 +1,9 @@
 import { useEffect } from "react";
-import Button from "../components/Button";
 import { FooterLogo } from "../components/FooterLogo";
-import Input from "../components/Input";
 import { Sublinks } from "../components/Sublinks";
 import { Socialmediaicons } from "../components/Socialmediaicons";
 import { SubscribeToNewsletter } from "../components/SubscribeToNewsletter";
+import { Copyright } from "../components/Copyright";
 
 export const Footer = () => {
   useEffect(() => {});
@@ -51,15 +50,10 @@ export const Footer = () => {
             <hr />
           </div>
           <div className="flex justify-center mt-5">
-            <div className="flex flex-col items-center lg:w-[190px] md:w-[150px] w-[125px] gap-2">
-              <h1 className={"text-white"}>Follow us on</h1>
-              <Socialmediaicons />
-            </div>
+            <Socialmediaicons />
           </div>
           <div className="text-center text-white mt-7">
-            <h1 className="md:font-medium md:text-[13px] text-[11px] text-[#E5E5E5]/75">
-              © Copyright, All rights reserved.
-            </h1>
+            <Copyright />
           </div>
         </div>
       </div>

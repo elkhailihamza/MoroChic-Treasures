@@ -3,9 +3,9 @@ import smile_man from "../../images/main/about/front-view-smiley-man-posing.jpg"
 export const OurStorySection = () => {
   return (
     <section >
-      <div className="flex justify-center flex-wrap lg:gap-7 gap-5 py-10">
+      <div className="flex justify-center flex-wrap lg:gap-7 gap-5 md:py-10">
         <div className="flex flex-col items-center justify-between md:w-1/2 w-4/5">
-          <div className="md:text-[26px] text-[20px] font-medium mt-5">
+          <div className="lg:text-[26px] text-[20px] font-medium mt-5 mb-5">
             <h1>Our Story</h1>
           </div>
           <div className="text-center lg:text-[16px] text-[13px] mb-16">

@@ -25,7 +25,7 @@ export const SubscribeToNewsletter = () => {
         <Input
           type="email"
           name="newsletter"
-          className="rounded py-1"
+          className="rounded ps-2 py-1"
           placeholder="Email.."
         ></Input>
       </div>
