@@ -6,7 +6,7 @@ export const OurMissionSection = () => {
       <div className="md:block hidden">
         <img className="object-contain w-80 rounded-lg" src={image} alt="man-on-the-phone" />
       </div>
-      <div className="flex flex-col justify-center items-center md:w-3/6 w-full">
+      <div className="flex flex-col justify-center items-center text-center md:w-3/6 w-full">
         <h2 className="lg:text-2xl text-xl font-medium underline">
           Our Mission:
         </h2>
