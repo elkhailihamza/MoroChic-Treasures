@@ -24,20 +24,47 @@ export const MostRecent = () => {
             data-carousel-item
           >
             <div className="flex flex-wrap justify-center items-center h-full lg:gap-16 gap-2 mt-2">
-              <Card image={image1} className={"flex flex-col md:w-[200px] w-[140px] bg-white"}>
-                <Button color="#606C38" base={false} className="py-1 text-white">Buy</Button>
+              <Card
+                image={image1}
+                className={"flex flex-col md:w-[200px] w-[140px] bg-white"}
+              >
+                <Button
+                  color="#606C38"
+                  base={false}
+                  className="py-1 text-white"
+                >
+                  Buy
+                </Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>
               </Card>
-              <Card image={image2} className={"flex flex-col md:w-[200px] w-[140px] bg-white"}>
-                <Button color="#606C38" base={false} className="py-1 text-white">Buy</Button>
+              <Card
+                image={image2}
+                className={"flex flex-col md:w-[200px] w-[140px] bg-white"}
+              >
+                <Button
+                  color="#606C38"
+                  base={false}
+                  className="py-1 text-white"
+                >
+                  Buy
+                </Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>
               </Card>
-              <Card image={image3} className={"flex flex-col md:w-[200px] w-[140px] bg-white"}>
-                <Button color="#606C38" base={false} className="py-1 text-white">Buy</Button>
+              <Card
+                image={image3}
+                className={"flex flex-col md:w-[200px] w-[140px] bg-white"}
+              >
+                <Button
+                  color="#606C38"
+                  base={false}
+                  className="py-1 text-white"
+                >
+                  Buy
+                </Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>
@@ -49,20 +76,47 @@ export const MostRecent = () => {
             data-carousel-item
           >
             <div className="flex flex-wrap justify-center items-center h-full lg:gap-16 gap-2 mt-2">
-              <Card image={image1} className={"flex flex-col md:w-[200px] w-[140px] bg-white"}>
-                <Button color="#606C38" base={false} className="py-3 text-white">Buy</Button>
+              <Card
+                image={image1}
+                className={"flex flex-col md:w-[200px] w-[140px] bg-white"}
+              >
+                <Button
+                  color="#606C38"
+                  base={false}
+                  className="py-1 text-white"
+                >
+                  Buy
+                </Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>
               </Card>
-              <Card image={image2} className={"flex flex-col md:w-[200px] w-[140px] bg-white"}>
-                <Button color="#606C38" base={false} className="py-3 text-white">Buy</Button>
+              <Card
+                image={image2}
+                className={"flex flex-col md:w-[200px] w-[140px] bg-white"}
+              >
+                <Button
+                  color="#606C38"
+                  base={false}
+                  className="py-1 text-white"
+                >
+                  Buy
+                </Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>
               </Card>
-              <Card image={image3} className={"flex flex-col md:w-[200px] w-[140px] bg-white"}>
-                <Button color="#606C38" base={false} className="py-3 text-white">Buy</Button>
+              <Card
+                image={image3}
+                className={"flex flex-col md:w-[200px] w-[140px] bg-white"}
+              >
+                <Button
+                  color="#606C38"
+                  base={false}
+                  className="py-1 text-white"
+                >
+                  Buy
+                </Button>
                 <div className="text-center mt-5 font-medium">
                   <h1>For: $99,99</h1>
                 </div>

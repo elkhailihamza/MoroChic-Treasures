@@ -13,6 +13,7 @@ import { AboutUs } from "./pages/main/AboutUs";
 import { RootLayout } from "./layouts/RootLayout";
 import { MainLayout } from "./layouts/MainLayout";
 import { AuthLayout } from "./layouts/AuthLayout";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,7 +31,11 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;
