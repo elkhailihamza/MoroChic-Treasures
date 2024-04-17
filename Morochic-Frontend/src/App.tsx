@@ -5,7 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import Login from "./pages/auth/Login";
+import { Login } from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Home from "./pages/main/Home";
 import { AboutUs } from "./pages/main/AboutUs";
@@ -14,6 +14,9 @@ import { RootLayout } from "./layouts/RootLayout";
 import { MainLayout } from "./layouts/MainLayout";
 import { AuthLayout } from "./layouts/AuthLayout";
 import { AuthProvider } from "./contexts/AuthContext";
+
+export const LOGIN = "/auth/login";
+export const HOME = "/";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -1,10 +1,12 @@
 import HeaderLogo from "../components/NavbarLogo";
-import Input from "../components/Input";
+import { Input } from "../components/Input";
 import Sidebar from "../components/Sidebar";
 import SidebarItem from "../components/SidebarItem";
 import Dropdown from "../components/Dropdown";
+import { useAuth } from "../contexts/AuthContext";
 
 const Navbar = () => {
+  const { logout } = useAuth();
   return (
     <>
       <nav className="bg-[#FEFAE0] bg-opacity-30">
@@ -331,6 +333,7 @@ const Navbar = () => {
         />
         <SidebarItem
           header="Log Out"
+          onClick={logout}
           svg={
             <svg
               xmlns="http://www.w3.org/2000/svg"

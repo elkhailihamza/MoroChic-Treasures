@@ -21,8 +21,11 @@ interface InputProps {
     | "reset"
     | "button";
   placeholder?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
-function Input({
+export const Input = ({
   className,
   name,
   placeholder = "placeholder",
@@ -31,19 +34,23 @@ function Input({
   autoComplete,
   max,
   min,
-}: InputProps) {
+  value,
+  disabled,
+  onChange,
+}: InputProps) => {
   return (
     <input
       type={type}
       name={name}
       maxLength={max}
       minLength={min}
+      value={value}
       required={required}
+      disabled={disabled}
       autoComplete={autoComplete}
       placeholder={placeholder}
       className={className + " w-full outline-none"}
+      onChange={onChange}
     />
   );
-}
-
-export default Input;
+};

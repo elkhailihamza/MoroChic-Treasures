@@ -1,10 +1,66 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Button from "../../components/Button";
-import Input from "../../components/Input";
+import { Input } from "../../components/Input";
 import Logo from "../../components/NavbarLogo";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { SpinnerCircular } from "spinners-react";
+import axiosClient from "../../axios";
+import { useAuth } from "../../contexts/AuthContext";
+import { HOME } from "../../App";
+
+type formData = {
+  username?: string;
+  email?: string;
+  password?: string;
+  password_confirmation?: string;
+};
+
+type errors = {
+  username?: string;
+  email?: string;
+  password?: string;
+};
 
 const Register = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [errors, setErrors] = useState<errors>();
+  const [data, setData] = useState<formData>({
+    username: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setErrors({});
+    setIsLoading(true);
+    try {
+      await axiosClient.post("/register", data);
+      if (data.email && data.password) {
+        const response = await login(data.email, data.password);
+        if (response) {
+          navigate(HOME);
+        }
+      }
+    } catch (error: any) {
+      setErrors(error?.response?.data?.errors ?? {});
+    }
+    setIsLoading(false);
+  };
+
   return (
     <>
       <section className="flex flex-col items-center justify-center mt-10">
@@ -16,49 +72,70 @@ const Register = () => {
             <div className="flex justify-center">
               <h1 className="text-[28px] mb-5">Register</h1>
             </div>
-            <form className="sm:w-[400px] w-full" method="post" action="">
+            <form onSubmit={handleSubmit} className="sm:w-[400px] w-full">
               <div className="flex flex-col align-center justify-center gap-5">
-                <div className="flex justify-between gap-2">
+                <div className="grid w-full">
                   <Input
-                    placeholder="First Name"
-                    name="email"
+                    placeholder="Username"
+                    name="username"
                     type="text"
-                    required
+                    onChange={handleChange}
+                    value={data.username}
                     className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
                   />
-                  <Input
-                    placeholder="Last Name"
-                    name="email"
-                    type="text"
-                    required
-                    className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
-                  />
+                  {errors && errors.username ? (
+                    <span className="bg-red-600 text-white px-2 py-1 text-sm">
+                      {errors.username}
+                    </span>
+                  ) : (
+                    ``
+                  )}
                 </div>
-                <Input
-                  placeholder="Email"
-                  name="email"
-                  type="email"
-                  autoComplete="username"
-                  required
-                  className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
-                />
-                <div className="flex justify-between gap-2">
+                <div className="grid w-full">
                   <Input
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    autoComplete="new-password"
-                    required
+                    placeholder="Email"
+                    name="email"
+                    type="email"
+                    onChange={handleChange}
+                    value={data.email}
+                    autoComplete="username"
                     className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
                   />
-                  <Input
-                    placeholder="Confirm"
-                    name="confirm_password"
-                    type="password"
-                    autoComplete="new-password"
-                    required
-                    className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
-                  />
+                  {errors && errors.email ? (
+                    <span className="bg-red-600 text-white px-2 py-1 text-sm">
+                      {errors.email}
+                    </span>
+                  ) : (
+                    ``
+                  )}
+                </div>
+                <div className="grid w-full">
+                  <div className="flex justify-between gap-2">
+                    <Input
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                      onChange={handleChange}
+                      autoComplete="new-password"
+                      className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
+                    />
+                    <Input
+                      placeholder="Confirm"
+                      name="password_confirmation"
+                      type="password"
+                      value={data["password_confirmation"]}
+                      onChange={handleChange}
+                      autoComplete="new-password"
+                      className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
+                    />
+                  </div>
+                  {errors && errors.password ? (
+                    <span className="bg-red-600 text-white px-2 py-1 text-sm">
+                      {errors.password}
+                    </span>
+                  ) : (
+                    ``
+                  )}
                 </div>
               </div>
               <div className="grid mt-5">
@@ -68,17 +145,25 @@ const Register = () => {
                     to={"/auth/login"}
                     className="text-[#BC6C25] hover:underline"
                   >
-                    Sign-up
+                    sign-in
                   </Link>
+                  .
                 </span>
               </div>
               <div className="flex justify-center mt-10">
-                <Button
-                  type="submit"
-                  className="px-[24px] py-[8px] text-[18px] bg-[#BC6C25] rounded-sm text-white"
-                >
-                  Sign-up
-                </Button>
+                {isLoading ? (
+                  <div className="flex justify-center items-center">
+                    <SpinnerCircular color="#BC6C25" />
+                  </div>
+                ) : (
+                  <Button
+                    type="submit"
+                    className="px-[26px] py-[6px] text-[18px] bg-[#BC6C25] rounded-sm text-white"
+                    base={false}
+                  >
+                    Sign-up
+                  </Button>
+                )}
               </div>
             </form>
           </div>

@@ -39,7 +39,7 @@ export const Footer = () => {
               <SubscribeToNewsletter />
             </div>
           </div>
-          <div className="flex sm:flex-row flex-col justify-around sm:px-16 px-7 sm:gap-16 gap-5 divide-x mt-7">
+          <div className="flex sm:flex-row flex-col justify-center sm:px-16 px-7 sm:gap-16 gap-5 divide-x mt-7">
             <Sublinks header="What is MoroChic" links={FirstLinks}></Sublinks>
             <div className="lg:block hidden" />
             <Sublinks header="MoroChic Help" links={SecondLinks}></Sublinks>
