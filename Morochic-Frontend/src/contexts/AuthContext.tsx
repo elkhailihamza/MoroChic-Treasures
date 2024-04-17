@@ -21,6 +21,7 @@ const AuthContext = createContext({
   },
   logout: () => {},
   errors: {} as errors,
+  setErrors: (_errors: any) => {},
 });
 
 export const useAuth = () => {
@@ -85,6 +86,7 @@ export const AuthProvider = ({ children }: authContextProps) => {
     login,
     logout,
     errors,
+    setErrors,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

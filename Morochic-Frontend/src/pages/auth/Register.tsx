@@ -16,16 +16,9 @@ type formData = {
   password_confirmation?: string;
 };
 
-type errors = {
-  username?: string;
-  email?: string;
-  password?: string;
-};
-
 const Register = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
-  const [errors, setErrors] = useState<errors>();
+  const { login, errors, setErrors } = useAuth();
   const [data, setData] = useState<formData>({
     username: "",
     email: "",
@@ -45,7 +38,6 @@ const Register = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setErrors({});
     setIsLoading(true);
     try {
       await axiosClient.post("/register", data);
