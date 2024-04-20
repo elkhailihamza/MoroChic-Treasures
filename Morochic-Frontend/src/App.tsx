@@ -9,6 +9,7 @@ import { Login } from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Home from "./pages/main/Home";
 import { AboutUs } from "./pages/main/AboutUs";
+import { Profile } from "./pages/main/Profile";
 
 import { RootLayout } from "./layouts/RootLayout";
 import { MainLayout } from "./layouts/MainLayout";
@@ -17,6 +18,8 @@ import { AuthProvider } from "./contexts/AuthContext";
 
 export const LOGIN = "/auth/login";
 export const HOME = "/";
+export const SETTINGS = "/settings";
+export const PROFILE = "/profile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +27,7 @@ const router = createBrowserRouter(
       <Route element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<AboutUs />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
       <Route path="auth" element={<AuthLayout />}>
         <Route path="login" element={<Login />} />

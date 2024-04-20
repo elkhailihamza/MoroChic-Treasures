@@ -1,3 +1,5 @@
+import React, { forwardRef } from 'react';
+
 interface InputProps {
   className?: string;
   name: string;
@@ -5,6 +7,7 @@ interface InputProps {
   autoComplete?: string;
   max?: number;
   min?: number;
+  id?: string;
   type?:
     | "text"
     | "password"
@@ -24,8 +27,10 @@ interface InputProps {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  ref?: React.Ref<HTMLInputElement>;
 }
-export const Input = ({
+
+export const Input = forwardRef<HTMLInputElement, InputProps>(({
   className,
   name,
   placeholder = "placeholder",
@@ -36,12 +41,15 @@ export const Input = ({
   min,
   value,
   disabled,
+  id,
   onChange,
-}: InputProps) => {
+}, ref) => {
   return (
     <input
       type={type}
       name={name}
+      id={id}
+      ref={ref}
       maxLength={max}
       minLength={min}
       value={value}
@@ -49,8 +57,8 @@ export const Input = ({
       disabled={disabled}
       autoComplete={autoComplete}
       placeholder={placeholder}
-      className={className + " w-full outline-none"}
+      className={className ? `${className} w-full outline-none` : 'w-full outline-none'}
       onChange={onChange}
     />
   );
-};
+});
