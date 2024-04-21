@@ -57,7 +57,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
       disabled={disabled}
       autoComplete={autoComplete}
       placeholder={placeholder}
-      className={className ? `${className} w-full outline-none` : 'w-full outline-none'}
+      className={`${className} w-full outline-none focus:rounded-none p-2 border-2 border-slate-950 bg-[#FEFAE0]`}
       onChange={onChange}
     />
   );

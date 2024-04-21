@@ -6,6 +6,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import moment from "moment";
 import axiosClient from "../../axios";
 import { useUser } from "../../contexts/UserContext";
+import { Textarea } from "../../components/Textarea";
 
 type data = {
   [key: string]: string;
@@ -18,6 +19,7 @@ export const Profile = () => {
   const [data, setData] = useState<data>({
     firstname: "",
     lastname: "",
+    bio: "",
   });
   const [selectedImage, setSelectedImage] = useState<string | null>();
   const [imagePreview, setImagePreview] = useState<File | null>();
@@ -37,11 +39,11 @@ export const Profile = () => {
         // setIsLoading(false);
       }
     };
-  
+
     fetchData();
   }, [fetchMe]); // Dependency array includes fetchMe
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
     setData((prevData) => ({
@@ -95,11 +97,11 @@ export const Profile = () => {
               >
                 <label className="flex mt-5 justify-center items-center w-full h-full bg-slate-200 rounded-full text-white text-center cursor-pointer hover:bg-gray-300">
                   {selectedImage ? (
-                      <Image
-                        className="w-full h-full rounded-full object-cover"
-                        src={selectedImage}
-                        alt="User Avatar"
-                      />
+                    <Image
+                      className="w-full h-full rounded-full object-cover"
+                      src={selectedImage}
+                      alt="User Avatar"
+                    />
                   ) : (
                     <></>
                   )}
@@ -221,9 +223,9 @@ export const Profile = () => {
             <div className="flex justify-center mt-10">
               <form className="w-[500px]">
                 <div className="grid justify-between gap-5">
-                  <div className="flex gap-5">
+                  <div className="flex gap-5 w-full">
                     <Input
-                      className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
+                      className="p-2 border-2 border-slate-950 bg-[#FEFAE0]"
                       placeholder="First Name"
                       type="text"
                       name="firstname"
@@ -231,13 +233,22 @@ export const Profile = () => {
                       value={data.firstname}
                     />
                     <Input
-                      className="p-2 border-2 border-slate-950 bg-[#FEFAE0] focus:rounded-none"
+                      className=""
                       placeholder="Last Name"
                       type="text"
                       name="lastname"
                       onChange={handleChange}
                       value={data.lastname}
                     />
+                  </div>
+                  <div className="w-full">
+                    <Textarea
+                      className="resize-none w-full h-40 rounded-sm"
+                      placeholder="bio"
+                      name="bio"
+                      onChange={handleChange}
+                      value={data.bio}
+                    ></Textarea>
                   </div>
                   <div className="text-center">
                     <Button
