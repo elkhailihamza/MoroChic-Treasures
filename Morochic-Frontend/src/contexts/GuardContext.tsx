@@ -12,6 +12,20 @@ export const useGuard = () => {
 };
 
 export const GuardProvider = ({ children }: GuardProviderProps) => {
+
+  // const fetchMe = async (): Promise<any> => {
+  //   if (!currentUser && Object.keys(currentUser).length == 0) {
+  //   try {
+  //     const response = await axiosClient.post("/me");
+  //     setCurrentUser(response.data.user[0]);
+  //     return true;
+  //   } catch (error) {
+  //     console.log(error);
+  //     return false;
+  //   }
+  //   }
+  // };
+
   const values = {};
 
   return (

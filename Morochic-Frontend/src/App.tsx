@@ -15,6 +15,7 @@ import { RootLayout } from "./layouts/RootLayout";
 import { MainLayout } from "./layouts/MainLayout";
 import { AuthLayout } from "./layouts/AuthLayout";
 import { AuthProvider } from "./contexts/AuthContext";
+import { UserProvider } from "./contexts/UserContext";
 
 export const LOGIN = "/auth/login";
 export const HOME = "/";
@@ -40,7 +41,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
     </AuthProvider>
   );
 }

@@ -5,6 +5,7 @@ import Button from "../../components/Button";
 import { useAuth } from "../../contexts/AuthContext";
 import moment from "moment";
 import axiosClient from "../../axios";
+import { useUser } from "../../contexts/UserContext";
 
 type data = {
   [key: string]: string;
@@ -12,32 +13,33 @@ type data = {
 
 export const Profile = () => {
   const { currentUser } = useAuth();
-  // const [isImageLoading, setIsImageLoading] = useState(true);
-  // const [btnColor, setBtnColor] = useState();
+  const { fetchMe, fetchProfile, userProfile } = useUser();
   const inputRef = useRef<HTMLInputElement>(null);
   const [data, setData] = useState<data>({
     firstname: "",
     lastname: "",
   });
-  const [lock, setLock] = useState();
-  const [selectedImage, setSelectedImage] = useState<File | string | null>();
-  const [userProfile, setUserProfile] = useState();
+  const [selectedImage, setSelectedImage] = useState<string | null>();
+  const [imagePreview, setImagePreview] = useState<File | null>();
 
   useEffect(() => {
-    const useLock = async () => {
-      const user = await currentUser;
-      const profile = await axiosClient.get("/profile/get");
-      if (user && Object.keys(user).length > 0) {
-        console.log(user);
+    const fetchData = async () => {
+      // setIsLoading(true);
+      try {
+        if (!currentUser) {
+          await fetchMe();
+        }
+        await fetchProfile();
+        setSelectedImage(userProfile?.avatar);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        // setIsLoading(false);
       }
-      if (user.profile) {
-        setSelectedImage(user?.profile?.avatar);
-      }
-      // if (profile.avatar)
     };
-
-    useLock();
-  }, []);
+  
+    fetchData();
+  }, [fetchMe]); // Dependency array includes fetchMe
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -111,7 +113,7 @@ export const Profile = () => {
                     onChange={(e) => {
                       const file = e.target.files;
                       if (file) {
-                        setSelectedImage(file[0]);
+                        setImagePreview(file[0]);
                       }
                     }}
                   />
@@ -146,7 +148,7 @@ export const Profile = () => {
                       color="transparent"
                       onClick={() => {
                         if (inputRef.current) {
-                          setSelectedImage(null);
+                          setImagePreview(null);
                           inputRef.current.value = "";
                         }
                       }}

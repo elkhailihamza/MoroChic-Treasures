@@ -9,7 +9,7 @@ export const Image = ({ className, src, alt }: ImageProps) => {
       className={className}
       src={
         typeof src === "string"
-          ? `${import.meta.env.VITE_APP_API_URL}/` + src
+          ? `${import.meta.env.VITE_APP_API_URL}/storage/` + src
           : src
           ? URL.createObjectURL(src)
           : ""

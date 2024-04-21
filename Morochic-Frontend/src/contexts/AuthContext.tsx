@@ -5,12 +5,6 @@ interface authContextProps {
   children: ReactNode;
 }
 
-type Profile = {
-  id: number;
-  bio: string | null;
-  avatar: string | null;
-};
-
 type errors = {
   username?: string;
   email?: string;
@@ -23,7 +17,7 @@ type currentUser = {
   firstname?: string;
   lastname?: string;
   email?: string;
-  profile?: Profile;
+  avatar?: string | null;
   role_id?: number | string;
   role_name?: string;
   created_at?: number | Date;
@@ -34,7 +28,6 @@ type AuthContextType = {
   isLoggedIn: boolean;
   currentUser: currentUser;
   setCurrentUser: (_user: currentUser) => void;
-  fetchMe: () => Promise<void>;
   storeAccess: (_token: string) => boolean;
   login: (_email: string, _password: string) => Promise<boolean>;
   logout: () => void;
@@ -46,7 +39,6 @@ const AuthContext = createContext<AuthContextType>({
   isLoggedIn: false,
   currentUser: {},
   setCurrentUser: (_user) => {},
-  fetchMe: () => Promise.resolve(),
   storeAccess: (_token) => false,
   login: (_email, _password) => Promise.resolve(false),
   logout: () => {},
@@ -100,24 +92,10 @@ export const AuthProvider = ({ children }: authContextProps) => {
     }
   };
 
-  const fetchMe = async (): Promise<any> => {
-    // if (!currentUser && Object.keys(currentUser).length == 0) {
-    try {
-      const response = await axiosClient.post("/me");
-      setCurrentUser(response.data.user[0]);
-      return true;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-    // }
-  };
-
   const value = {
     isLoggedIn,
     currentUser,
     setCurrentUser,
-    fetchMe,
     storeAccess,
     login,
     logout,

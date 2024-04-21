@@ -8,21 +8,19 @@ import { Link } from "react-router-dom";
 import { HOME, PROFILE, SETTINGS } from "../App";
 import { useEffect, useState } from "react";
 import { SpinnerCircular } from "spinners-react";
+import { useUser } from "../contexts/UserContext";
 
 const Navbar = () => {
   const { logout, currentUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const { fetchMe } = useAuth();
+  const { fetchMe } = useUser();
   useEffect(() => {
     const fetchUser = async () => {
       setIsLoading(true);
-      try {
+      if (!currentUser) {
         await fetchMe();
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
       }
+      setIsLoading(false);
     };
     fetchUser();
   }, []);
