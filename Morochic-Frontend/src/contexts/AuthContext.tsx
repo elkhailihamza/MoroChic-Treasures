@@ -5,6 +5,12 @@ interface authContextProps {
   children: ReactNode;
 }
 
+type Profile = {
+  id: number;
+  bio: string | null;
+  avatar: string | null;
+};
+
 type errors = {
   username?: string;
   email?: string;
@@ -17,6 +23,7 @@ type currentUser = {
   firstname?: string;
   lastname?: string;
   email?: string;
+  profile?: Profile;
   role_id?: number | string;
   role_name?: string;
   created_at?: number | Date;
@@ -95,15 +102,14 @@ export const AuthProvider = ({ children }: authContextProps) => {
 
   const fetchMe = async (): Promise<any> => {
     // if (!currentUser && Object.keys(currentUser).length == 0) {
-      try {
-        const response = await axiosClient.post("/me");
-        setCurrentUser(response.data.user[0]);
-        console.log(response.data.user[0]);
-        return true;
-      } catch (error) {
-        console.log(error);
-        return false;
-      }
+    try {
+      const response = await axiosClient.post("/me");
+      setCurrentUser(response.data.user[0]);
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
     // }
   };
 
