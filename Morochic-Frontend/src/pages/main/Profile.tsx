@@ -6,7 +6,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import moment from "moment";
 import axiosClient from "../../axios";
 import { useUser } from "../../contexts/UserContext";
-import { Textarea } from "../../components/Textarea";
+import { Textarea } from "../../components/TextArea";
 
 type data = {
   [key: string]: string;
@@ -28,9 +28,7 @@ export const Profile = () => {
     const fetchData = async () => {
       // setIsLoading(true);
       try {
-        if (!currentUser) {
-          await fetchMe();
-        }
+        // await fetchMe();
         await fetchProfile();
         setSelectedImage(userProfile?.avatar);
       } catch (error) {
@@ -43,7 +41,9 @@ export const Profile = () => {
     fetchData();
   }, [fetchMe]); // Dependency array includes fetchMe
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
 
     setData((prevData) => ({
@@ -204,8 +204,16 @@ export const Profile = () => {
               </div>
               <div className="h-full flex flex-col justify-center ">
                 <h1>
-                  Full Name: {renderContent(currentUser.firstname)}{" "}
-                  {renderContent(currentUser.lastname)}
+                  Full Name:{" "}
+                  {currentUser.firstname?.length == 0 &&
+                  currentUser.lastname?.length == 0 ? (
+                    <span>
+                      {" "}
+                      {currentUser.firstname + " " + currentUser.lastname}
+                    </span>
+                  ) : (
+                    <span className="text-slate-300 select-none">Not Found!</span>
+                  )}
                 </h1>
                 <h1>Username: {renderContent(currentUser.username)}</h1>
                 <h1>Email: {renderContent(currentUser.email)}</h1>
@@ -225,7 +233,6 @@ export const Profile = () => {
                 <div className="grid justify-between gap-5">
                   <div className="flex gap-5 w-full">
                     <Input
-                      className="p-2 border-2 border-slate-950 bg-[#FEFAE0]"
                       placeholder="First Name"
                       type="text"
                       name="firstname"
@@ -233,7 +240,6 @@ export const Profile = () => {
                       value={data.firstname}
                     />
                     <Input
-                      className=""
                       placeholder="Last Name"
                       type="text"
                       name="lastname"
@@ -243,7 +249,8 @@ export const Profile = () => {
                   </div>
                   <div className="w-full">
                     <Textarea
-                      className="resize-none w-full h-40 rounded-sm"
+                      className="h-40"
+                      resize={false}
                       placeholder="bio"
                       name="bio"
                       onChange={handleChange}

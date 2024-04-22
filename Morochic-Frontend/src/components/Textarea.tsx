@@ -11,6 +11,7 @@ interface TextareaProps {
   disabled?: boolean;
   ref?: React.Ref<HTMLTextAreaElement>;
   maxLength?: number;
+  resize?: boolean;
 }
 export const Textarea = ({
   className,
@@ -22,10 +23,11 @@ export const Textarea = ({
   disabled,
   id,
   onChange,
+  resize = true,
 }: TextareaProps) => {
   return (
     <textarea
-      className={`${className} w-full outline-none focus:rounded-none px-2 py-1  rounded-sm border-2 border-slate-950 bg-[#FEFAE0]`}
+      className={`${!resize && "resize-none "}${className} w-full outline-none focus:rounded-none px-2 py-1  rounded-sm border-2 border-slate-950 bg-[#FEFAE0]`}
       placeholder={placeholder}
       name={name}
       id={id}

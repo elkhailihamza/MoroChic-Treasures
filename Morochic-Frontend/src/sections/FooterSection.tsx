@@ -29,7 +29,7 @@ export const Footer = () => {
   ];
   return (
     <section className="bg-[#000000]">
-      <div className="w-full flex justify-center">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8 w-full flex justify-center">
         <div className="w-5/6 md:px-10 md:pt-10 pt-5 pb-2">
           <div className="flex lg:justify-between justify-center md:mb-[16px] mb-[8px]">
             <div className="lg:w-[225px] md:w-[150px] w-[125px] h-16">

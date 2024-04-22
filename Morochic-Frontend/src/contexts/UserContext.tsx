@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import axiosClient from "../axios";
 import { useAuth } from "./AuthContext";
 
@@ -28,8 +34,15 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const { setCurrentUser } = useAuth();
+  const { setCurrentUser, currentUser } = useAuth();
   const [userProfile, setUserProfile] = useState<userProfile | undefined>();
+  const [hasFetchedMe, setHasFetchedMe] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!currentUser && !hasFetchedMe) {
+      fetchMe().then(() => setHasFetchedMe(true));
+    }
+  }, [currentUser]);
 
   const fetchMe = async (): Promise<void> => {
     try {

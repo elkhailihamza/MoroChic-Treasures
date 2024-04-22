@@ -5,7 +5,7 @@ import SidebarItem from "../components/SidebarItem";
 import Dropdown from "../components/Dropdown";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
-import { HOME, PROFILE, SETTINGS } from "../App";
+import { CATALOG, HOME, PROFILE, SETTINGS } from "../App";
 import { useEffect, useState } from "react";
 import { SpinnerCircular } from "spinners-react";
 import { useUser } from "../contexts/UserContext";
@@ -17,9 +17,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchUser = async () => {
       setIsLoading(true);
-      if (!currentUser) {
-        await fetchMe();
-      }
+      await fetchMe();
       setIsLoading(false);
     };
     fetchUser();
@@ -27,7 +25,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-[#FEFAE0] bg-opacity-30 shadow-sm">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8 flex flex-wrap items-center justify-between p-3">
           <Link
             to={HOME}
             className="flex items-center space-x-3 md:w-[140px] w-[100px] rtl:space-x-reverse"
@@ -295,6 +293,7 @@ const Navbar = () => {
             </div>
             <SidebarItem
               header="Catalog"
+              to={CATALOG}
               svg={
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

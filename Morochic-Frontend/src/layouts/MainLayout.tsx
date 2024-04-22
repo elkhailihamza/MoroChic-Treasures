@@ -6,7 +6,9 @@ export const MainLayout = () => {
   return (
     <div className="main-layout">
       <Navbar />
-      <Outlet />
+      <div className="max-w-8xl mx-auto">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
