@@ -2,6 +2,7 @@ import HeaderLogo from "../components/NavbarLogo";
 import { Input } from "../components/Input";
 import Sidebar from "../components/Sidebar";
 import SidebarItem from "../components/SidebarItem";
+import { WishListDropdown } from "../components/WishListDropdown";
 import Dropdown from "../components/Dropdown";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
@@ -12,6 +13,7 @@ import { useUser } from "../contexts/UserContext";
 
 const Navbar = () => {
   const { logout, currentUser } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   const { fetchMe } = useUser();
   useEffect(() => {
@@ -68,12 +70,8 @@ const Navbar = () => {
             <div className="hidden w-full md:block md:w-auto md:block hidden">
               <ul className="flex flex-col gap-2 justify-center font-medium md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0">
                 <div className="flex gap-4 justify-center">
-                  <li>
-                    <a
-                      href="#"
-                      className="block text-white bg-blue-700 rounded sm:bg-transparent rounded-full md:text-blue-700 md:p-0"
-                      aria-current="page"
-                    >
+                  <li id="WishList" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    <span className="block cursor-pointer text-white bg-blue-700 rounded sm:bg-transparent rounded-full md:text-blue-700 md:p-0">
                       <svg
                         className="hover:fill-gray-100"
                         xmlns="http://www.w3.org/2000/svg"
@@ -88,8 +86,9 @@ const Navbar = () => {
                       >
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                       </svg>
-                    </a>
+                    </span>
                   </li>
+                  <WishListDropdown id="WishList" open={isMenuOpen} />
                   <li>
                     <a
                       href="#"

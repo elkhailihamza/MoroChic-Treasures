@@ -1,7 +1,7 @@
 interface ImageProps {
-  className: string;
-  src: File | string | null;
-  alt: string;
+  className?: string;
+  src?: File | string | null;
+  alt?: string;
 }
 export const Image = ({ className, src, alt }: ImageProps) => {
   return (

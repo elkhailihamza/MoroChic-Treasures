@@ -19,6 +19,7 @@ import { AuthLayout } from "./layouts/AuthLayout";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { UserProvider } from "./contexts/UserContext";
 import { ReactNode } from "react";
+import { Item } from "./pages/main/Item";
 
 export const LOGIN = "/auth/login";
 export const HOME = "/";
@@ -45,6 +46,7 @@ const router = createBrowserRouter(
         <Route path="about" element={<AboutUs />} />
         <Route path="profile" element={<Profile />} />
         <Route path="catalog" element={<Catalog />} />
+        <Route path="catalog/:id" element={<Item />} />
       </Route>
       <Route path="auth" element={<AuthLayout />}>
         <Route path="login" element={<Login />} />
