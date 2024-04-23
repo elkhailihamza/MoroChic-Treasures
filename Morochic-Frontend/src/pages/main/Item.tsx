@@ -1,8 +1,8 @@
 import { Divider } from "../../components/Divider";
-import { CustomerReviewsSection } from "../../sections/item/CustomerReviewsSection";
-import { DescriptionSection } from "../../sections/item/DescriptionSection";
-import { ReviewSection } from "../../sections/item/ReviewSection";
-import { TopSection } from "../../sections/item/TopSection";
+import { CustomerReviewsSection } from "../../sections/Main/item/CustomerReviewsSection";
+import { DescriptionSection } from "../../sections/Main/item/DescriptionSection";
+import { ReviewSection } from "../../sections/Main/item/ReviewSection";
+import { TopSection } from "../../sections/Main/item/TopSection";
 
 export const Item = () => {
   return (

@@ -1,8 +1,8 @@
-import { CategorySection } from "../../sections/catalog/CategorySection";
-import { FeaturedSection } from "../../sections/catalog/FeaturedSection";
-import { MoroChicChoiceSection } from "../../sections/catalog/MoroChicChoiceSection";
-import { MoreFromUsSection } from "../../sections/catalog/MoreFromUsSection";
-import { ForYouSection } from "../../sections/catalog/ForYouSection";
+import { CategorySection } from "../../sections/Main/catalog/CategorySection";
+import { FeaturedSection } from "../../sections/Main/catalog/FeaturedSection";
+import { MoroChicChoiceSection } from "../../sections/Main/catalog/MoroChicChoiceSection";
+import { MoreFromUsSection } from "../../sections/Main/catalog/MoreFromUsSection";
+import { ForYouSection } from "../../sections/Main/catalog/ForYouSection";
 
 export const Catalog = () => {
   return (

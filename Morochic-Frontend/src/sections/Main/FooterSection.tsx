@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { FooterLogo } from "../components/FooterLogo";
-import { Sublinks } from "../components/Sublinks";
-import { Socialmediaicons } from "../components/Socialmediaicons";
-import { SubscribeToNewsletter } from "../components/SubscribeToNewsletter";
-import { Copyright } from "../components/Copyright";
+import { FooterLogo } from "../../components/FooterLogo";
+import { Sublinks } from "../../components/Sublinks";
+import { Socialmediaicons } from "../../components/Socialmediaicons";
+import { SubscribeToNewsletter } from "../../components/SubscribeToNewsletter";
+import { Copyright } from "../../components/Copyright";
 
 export const Footer = () => {
   useEffect(() => {});

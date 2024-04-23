@@ -1,15 +1,15 @@
-import HeaderLogo from "../components/NavbarLogo";
-import { Input } from "../components/Input";
-import Sidebar from "../components/Sidebar";
-import SidebarItem from "../components/SidebarItem";
-import { WishListDropdown } from "../components/WishListDropdown";
-import Dropdown from "../components/Dropdown";
-import { useAuth } from "../contexts/AuthContext";
+import HeaderLogo from "../../components/NavbarLogo";
+import { Input } from "../../components/Input";
+import Sidebar from "../../components/Sidebar";
+import SidebarItem from "../../components/SidebarItem";
+import { WishListDropdown } from "../../components/WishListDropdown";
+import Dropdown from "../../components/Dropdown";
+import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
-import { CATALOG, HOME, PROFILE, SETTINGS } from "../App";
+import { CATALOG, HOME, PROFILE, SETTINGS } from "../../App";
 import { useEffect, useState } from "react";
 import { SpinnerCircular } from "spinners-react";
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext";
 
 const Navbar = () => {
   const { logout, currentUser } = useAuth();
@@ -34,38 +34,6 @@ const Navbar = () => {
           >
             <HeaderLogo />
           </Link>
-
-          <div className="w-1/2 sm:block hidden">
-            <form>
-              <label className="mb-2 text-sm font-medium text-gray-900 sr-only ">
-                Search
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#000000"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </div>
-                <Input
-                  type="search"
-                  name="searchBar"
-                  className="block p-1 rounded-full ps-10 text-sm text-gray-900 border-2 border-gray-300 border-slate-900 bg-gray-50"
-                  placeholder="Looking for something?"
-                />
-              </div>
-            </form>
-          </div>
           <div className="flex md:gap-10 items-center">
             <div className="hidden w-full md:block md:w-auto md:block hidden">
               <ul className="flex flex-col gap-2 justify-center font-medium md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0">

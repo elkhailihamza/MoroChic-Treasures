@@ -1,5 +1,5 @@
-import image1 from "../../images/carousel-1.svg";
-import Button from "../../components/Button";
+import image1 from "../../../images/carousel-1.svg";
+import Button from "../../../components/Button";
 
 export const ItemOfTheDay = () => {
   return (

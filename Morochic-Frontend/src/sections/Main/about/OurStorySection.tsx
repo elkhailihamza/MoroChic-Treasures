@@ -1,4 +1,4 @@
-import smile_man from "../../images/main/about/front-view-smiley-man-posing.jpg";
+import smile_man from "../../../images/main/about/front-view-smiley-man-posing.jpg";
 
 export const OurStorySection = () => {
   return (

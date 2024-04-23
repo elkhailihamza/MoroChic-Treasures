@@ -1,5 +1,5 @@
-import Button from "../../components/Button";
-import image from "../../images/main/about/camera_man.png";
+import Button from "../../../components/Button";
+import image from "../../../images/main/about/camera_man.png";
 
 export const JoinSection = () => {
   return (

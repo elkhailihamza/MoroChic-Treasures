@@ -1,4 +1,4 @@
-import image from "../../images/main/about/phone-man.jpg";
+import image from "../../../images/main/about/phone-man.jpg";
 
 export const OurMissionSection = () => {
   return (

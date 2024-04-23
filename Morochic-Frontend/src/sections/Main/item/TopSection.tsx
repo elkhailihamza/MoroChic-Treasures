@@ -1,6 +1,6 @@
-import { ItemRatingSVG } from "../../components/ItemRatingSVG";
-import { RightPointingArrowSVG } from "../../components/RightPointingArrowSVG";
-import { ItemCard } from "../../components/ItemCard";
+import { ItemRatingSVG } from "../../../components/ItemRatingSVG";
+import { RightPointingArrowSVG } from "../../../components/RightPointingArrowSVG";
+import { ItemCard } from "../../../components/ItemCard";
 
 export const TopSection = () => {
   return (

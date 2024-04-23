@@ -1,4 +1,4 @@
-import { CustomerReviewsBar } from "../../components/CustomerReviewsBar";
+import { CustomerReviewsBar } from "../../../components/CustomerReviewsBar";
 
 export const CustomerReviewsSection = () => {
   return (

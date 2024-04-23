@@ -1,4 +1,4 @@
-import { CategoryPill } from "../../components/CategoryPill";
+import { CategoryPill } from "../../../components/CategoryPill";
 
 export const CategorySection = () => {
   return (
