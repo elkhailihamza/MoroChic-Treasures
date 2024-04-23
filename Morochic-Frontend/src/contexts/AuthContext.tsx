@@ -9,6 +9,8 @@ type errors = {
   username?: string;
   email?: string;
   password?: string;
+  message?: string;
+  details?: string;
 };
 
 type currentUser = {
@@ -77,6 +79,7 @@ export const AuthProvider = ({ children }: authContextProps) => {
       setErrors({} as errors);
       return Promise.resolve(true);
     } catch (error: any) {
+      console.log(error.response.data.errors);
       setErrors(error?.response?.data?.errors ?? {});
       return false;
     }

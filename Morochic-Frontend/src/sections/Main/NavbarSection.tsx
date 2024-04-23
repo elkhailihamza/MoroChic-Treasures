@@ -6,7 +6,7 @@ import { WishListDropdown } from "../../components/WishListDropdown";
 import Dropdown from "../../components/Dropdown";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
-import { CATALOG, HOME, PROFILE, SETTINGS } from "../../App";
+import { CATALOG, HOME, LOGIN, PROFILE, REGISTER, SETTINGS } from "../../App";
 import { useEffect, useState } from "react";
 import { SpinnerCircular } from "spinners-react";
 import { useUser } from "../../contexts/UserContext";
@@ -18,8 +18,12 @@ const Navbar = () => {
   useEffect(() => {
     const fetchUser = async () => {
       setIsLoading(true);
-      await fetchMe();
-      setIsLoading(false);
+      try {
+        await fetchMe();
+      } catch (error) {
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchUser();
   }, []);
@@ -87,10 +91,52 @@ const Navbar = () => {
                       </svg>
                     </span>
                   </li>
-                  <WishListDropdown id="WishList" />
-                  <li
-                     data-dropdown-toggle="Inbox"
-                  >
+                  <WishListDropdown id="WishList">
+                    {isLoading ? (
+                      <div className="flex h-[95%] justify-center items-center">
+                        <SpinnerCircular color="#000000" />
+                      </div>
+                    ) : currentUser && Object.keys(currentUser).length > 0 ? (
+                      <div className="h-full flex justify-center items-center">
+                        <h1 className="text-center text-sm text-slate-500 font-regular">
+                          <Link
+                            className="text-blue-700 hover:underline"
+                            to={LOGIN}
+                          >
+                            Login
+                          </Link>{" "}
+                          or{" "}
+                          <Link
+                            className="text-blue-700 hover:underline"
+                            to={REGISTER}
+                          >
+                            Make an Account
+                          </Link>{" "}
+                          to uselo gege
+                        </h1>
+                      </div>
+                    ) : (
+                      <div className="h-full flex justify-center items-center">
+                        <h1 className="text-center text-sm text-slate-500 font-regular">
+                          <Link
+                            className="text-blue-700 hover:underline"
+                            to={LOGIN}
+                          >
+                            Login
+                          </Link>{" "}
+                          or{" "}
+                          <Link
+                            className="text-blue-700 hover:underline"
+                            to={REGISTER}
+                          >
+                            Make an Account
+                          </Link>{" "}
+                          to use this feature
+                        </h1>
+                      </div>
+                    )}
+                  </WishListDropdown>
+                  <li data-dropdown-toggle="Inbox">
                     <span className="block cursor-pointer text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
                       <svg
                         className="hover:fill-gray-200"
@@ -363,19 +409,37 @@ const Navbar = () => {
                     fill="none"
                     stroke="#000000"
                     strokeWidth="2"
-                    aria-hidden="true"
-                    className="w-5 h-5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-log-out w-5 h-5"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M12 2.25a.75.75 0 01.75.75v9a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM6.166 5.106a.75.75 0 010 1.06 8.25 8.25 0 1011.668 0 .75.75 0 111.06-1.06c3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788a.75.75 0 011.06 0z"
-                      clipRule="evenodd"
-                    ></path>
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
                   </svg>
                 }
               />
             ) : (
-              ""
+              <SidebarItem
+                header="Login"
+                to={LOGIN}
+                svg={
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#000000"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-log-in w-5 h-5"
+                  >
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                    <polyline points="10 17 15 12 10 7"></polyline>
+                    <line x1="15" y1="12" x2="3" y2="12"></line>
+                  </svg>
+                }
+              />
             )}
           </>
         )}

@@ -32,6 +32,7 @@ const Button = ({
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       onClick={onClick}
+      style={{ backgroundColor: color }}
     >
       {children}
     </button>

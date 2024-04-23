@@ -65,6 +65,16 @@ const Register = () => {
               <h1 className="text-[28px] mb-5">Register</h1>
             </div>
             <form onSubmit={handleSubmit} className="sm:w-[400px] w-full">
+              {errors && errors.message ? (
+                <div className="bg-red-600 p-2 w-full">
+                  <span className="text-white text-sm">
+                    <span className="font-bold">{errors.message}!</span>{" "}
+                    {errors.details}
+                  </span>
+                </div>
+              ) : (
+                ``
+              )}
               <div className="flex flex-col align-center justify-center gap-5">
                 <div className="grid w-full">
                   <Input
