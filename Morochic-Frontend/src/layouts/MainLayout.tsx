@@ -6,7 +6,7 @@ export const MainLayout = () => {
   return (
     <div className="main-layout">
       <Navbar />
-      <div className="max-w-8xl mx-auto">
+      <div className="mt-[65px]">
         <Outlet />
       </div>
       <Footer />

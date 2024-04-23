@@ -1,9 +1,7 @@
-import HeaderLogo from "../../components/NavbarLogo";
-import { Input } from "../../components/Input";
+import {NavbarLogoVendor} from "../../components/NavbarLogoVendor";
 import Sidebar from "../../components/Sidebar";
 import SidebarItem from "../../components/SidebarItem";
 import { WishListDropdown } from "../../components/WishListDropdown";
-import Dropdown from "../../components/Dropdown";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { CATALOG, HOME, PROFILE, SETTINGS } from "../../App";
@@ -32,7 +30,7 @@ const Navbar = () => {
             to={HOME}
             className="flex items-center space-x-3 md:w-[140px] w-[100px] rtl:space-x-reverse"
           >
-            <HeaderLogo />
+            <NavbarLogoVendor />
           </Link>
           <div className="flex md:gap-10 items-center">
             <div className="hidden w-full md:block md:w-auto md:block hidden">
@@ -56,10 +54,9 @@ const Navbar = () => {
                       </svg>
                     </span>
                   </li>
-                  <WishListDropdown id="WishList" open={isMenuOpen} />
+                  <WishListDropdown id="WishList" />
                   <li>
                     <a
-                      href="#"
                       className="block text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
                     >
                       <svg
@@ -103,67 +100,6 @@ const Navbar = () => {
                   </li>
                 </div>
               </ul>
-            </div>
-            <div className="sm:hidden block">
-              <button
-                data-dropdown-toggle="searchBar"
-                className="inline-flex transition-all items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#000000"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-              </button>
-              <Dropdown
-                header={
-                  <h1 className="font-medium text-[26px] my-5">Search Bar</h1>
-                }
-                id="searchBar"
-                className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-full"
-              >
-                <div className="flex justify-center">
-                  <form className="w-5/6">
-                    <label className="mb-2 text-sm font-medium text-gray-900 sr-only ">
-                      Search
-                    </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="#000000"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <circle cx="11" cy="11" r="8"></circle>
-                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                      </div>
-                      <Input
-                        type="search"
-                        name="searchBar"
-                        className="block p-1 rounded-full ps-10 text-sm text-gray-900 border-2 border-gray-300 border-slate-900 bg-gray-50"
-                        placeholder="Looking for something?"
-                      />
-                      {/* <input  id="default-search" className=""  required /> */}
-                    </div>
-                  </form>
-                </div>
-              </Dropdown>
             </div>
             <button
               data-drawer-backdrop="false"

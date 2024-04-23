@@ -13,7 +13,6 @@ import { useUser } from "../../contexts/UserContext";
 
 const Navbar = () => {
   const { logout, currentUser } = useAuth();
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   const { fetchMe } = useUser();
   useEffect(() => {
@@ -26,7 +25,7 @@ const Navbar = () => {
   }, []);
   return (
     <>
-      <nav className="bg-[#FEFAE0] bg-opacity-30 shadow-sm">
+      <nav className="bg-[#FFFFFF] shadow-sm fixed top-0 left-0 w-full z-40">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8 flex flex-wrap items-center justify-between p-3">
           <Link
             to={HOME}
@@ -70,10 +69,10 @@ const Navbar = () => {
             <div className="hidden w-full md:block md:w-auto md:block hidden">
               <ul className="flex flex-col gap-2 justify-center font-medium md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0">
                 <div className="flex gap-4 justify-center">
-                  <li id="WishList" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                  <li data-dropdown-toggle="WishList">
                     <span className="block cursor-pointer text-white bg-blue-700 rounded sm:bg-transparent rounded-full md:text-blue-700 md:p-0">
                       <svg
-                        className="hover:fill-gray-100"
+                        className="hover:fill-gray-200"
                         xmlns="http://www.w3.org/2000/svg"
                         width="22"
                         height="22"
@@ -88,14 +87,13 @@ const Navbar = () => {
                       </svg>
                     </span>
                   </li>
-                  <WishListDropdown id="WishList" open={isMenuOpen} />
-                  <li>
-                    <a
-                      href="#"
-                      className="block text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-                    >
+                  <WishListDropdown id="WishList" />
+                  <li
+                     data-dropdown-toggle="Inbox"
+                  >
+                    <span className="block cursor-pointer text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
                       <svg
-                        className="hover:fill-gray-100"
+                        className="hover:fill-gray-200"
                         xmlns="http://www.w3.org/2000/svg"
                         width="22"
                         height="22"
@@ -110,7 +108,7 @@ const Navbar = () => {
                         <circle cx="18" cy="20.5" r="1" />
                         <path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" />
                       </svg>
-                    </a>
+                    </span>
                   </li>
                   <li>
                     <a

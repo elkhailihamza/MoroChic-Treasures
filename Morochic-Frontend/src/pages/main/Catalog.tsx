@@ -6,7 +6,7 @@ import { ForYouSection } from "../../sections/Main/catalog/ForYouSection";
 
 export const Catalog = () => {
   return (
-    <div className="mb-12 lg:px-28 md:px-12 px-5">
+    <div className="max-w-8xl mx-auto mb-12 lg:px-28 md:px-12 px-5 mt-40">
       <CategorySection />
       <ForYouSection />
       <FeaturedSection />
