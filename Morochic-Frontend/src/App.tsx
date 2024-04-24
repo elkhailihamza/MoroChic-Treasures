@@ -25,6 +25,7 @@ import { VendorLayout } from "./layouts/VendorLayout";
 import { ErrorLayout } from "./layouts/ErrorLayout";
 import { Unauthorized } from "./pages/error/Unauthorized";
 import { NotFound } from "./pages/error/NotFound";
+import { ShoppingCart } from "./pages/main/ShoppingCart";
 
 export const LOGIN = "/auth/login";
 export const REGISTER = "/auth/register";
@@ -32,6 +33,7 @@ export const HOME = "/";
 export const SETTINGS = "/settings";
 export const PROFILE = "/profile";
 export const CATALOG = "/catalog";
+export const CART = "/cart";
 export const UNAUTHORIZED = "/unauthorized";
 
 // const withAuth = (WrappedRoute: any) => {
@@ -54,6 +56,7 @@ export const router = createBrowserRouter(
         <Route path="profile" element={<Profile />} />
         <Route path="catalog" element={<Catalog />} />
         <Route path="catalog/:id" element={<Item />} />
+        <Route path="cart" element={<ShoppingCart />} />
       </Route>
       <Route path="vendor" element={<VendorLayout />}>
         <Route index element={<HomeVendor />} />

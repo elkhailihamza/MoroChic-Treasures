@@ -1,5 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import axiosClient from "../axios";
+import { HOME, router } from "../App";
 
 interface authContextProps {
   children: ReactNode;
@@ -75,6 +76,7 @@ export const AuthProvider = ({ children }: authContextProps) => {
       if (response.data.access_token) {
         storeAccess(response.data.access_token);
         setCurrentUser(response.data.user);
+        router.navigate(HOME);
       }
       setErrors({} as errors);
       return Promise.resolve(true);

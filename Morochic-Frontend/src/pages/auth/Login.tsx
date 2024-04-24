@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Button from "../../components/Button";
 import { Input } from "../../components/Input";
@@ -6,11 +6,9 @@ import Logo from "../../components/NavbarLogo";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { SpinnerCircular } from "spinners-react";
 import { useAuth } from "../../contexts/AuthContext";
-import { HOME } from "../../App";
 
 export const Login = () => {
   const { login, errors } = useAuth();
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({
     email: "",
@@ -29,10 +27,7 @@ export const Login = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    const response = await login(data.email, data.password);
-    if (response) {
-      navigate(HOME);
-    }
+    await login(data.email, data.password);
     setIsLoading(false);
   };
   return (

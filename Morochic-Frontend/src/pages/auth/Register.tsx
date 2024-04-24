@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Button from "../../components/Button";
 import { Input } from "../../components/Input";
@@ -7,7 +7,6 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { SpinnerCircular } from "spinners-react";
 import axiosClient from "../../axios";
 import { useAuth } from "../../contexts/AuthContext";
-import { HOME } from "../../App";
 
 type formData = {
   username?: string;
@@ -17,7 +16,6 @@ type formData = {
 };
 
 const Register = () => {
-  const navigate = useNavigate();
   const { login, errors, setErrors } = useAuth();
   const [data, setData] = useState<formData>({
     username: "",
@@ -42,10 +40,7 @@ const Register = () => {
     try {
       await axiosClient.post("/register", data);
       if (data.email && data.password) {
-        const response = await login(data.email, data.password);
-        if (response) {
-          navigate(HOME);
-        }
+        await login(data.email, data.password);
       }
     } catch (error: any) {
       setErrors(error?.response?.data?.errors ?? {});
