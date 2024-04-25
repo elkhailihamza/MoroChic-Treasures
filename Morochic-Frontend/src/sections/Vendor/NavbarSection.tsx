@@ -1,27 +1,33 @@
-import {NavbarLogoVendor} from "../../components/NavbarLogoVendor";
+import { NavbarLogoVendor } from "../../components/NavbarLogoVendor";
 import Sidebar from "../../components/Sidebar";
 import SidebarItem from "../../components/SidebarItem";
 import { WishListDropdown } from "../../components/WishListDropdown";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
-import { CATALOG, HOME, PROFILE, SETTINGS } from "../../App";
+import { CATALOG, HOME, LOGIN, NEWPRODUCT, PROFILE, SETTINGS } from "../../App";
 import { useEffect, useState } from "react";
 import { SpinnerCircular } from "spinners-react";
 import { useUser } from "../../contexts/UserContext";
 
 const Navbar = () => {
-  const { logout, currentUser } = useAuth();
+  const { logout, currentUser, isLoggedIn } = useAuth();
+  const { isLoading } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const { fetchMe } = useUser();
-  useEffect(() => {
-    const fetchUser = async () => {
-      setIsLoading(true);
-      await fetchMe();
-      setIsLoading(false);
-    };
-    fetchUser();
-  }, []);
+  // const { checkIfVendorGuard } = useUser();
+  //   useEffect(() => {
+  //     const fetchUserAndCheckVendor = async () => {
+  //         setIsLoading(true);
+  //         const isVendor = await checkIfVendorGuard();  // Check if user is a vendor
+
+  //         if (isVendor) {
+  //             console.log("is vendor");
+  //         }
+
+  //         setIsLoading(false);
+  //     };
+
+  //     fetchUserAndCheckVendor();
+  // }, []);
   return (
     <>
       <nav className="bg-[#FEFAE0] bg-opacity-30 shadow-sm">
@@ -56,9 +62,7 @@ const Navbar = () => {
                   </li>
                   <WishListDropdown id="WishList" />
                   <li>
-                    <a
-                      className="block text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-                    >
+                    <a className="block text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
                       <svg
                         className="hover:fill-gray-100"
                         xmlns="http://www.w3.org/2000/svg"
@@ -195,6 +199,27 @@ const Navbar = () => {
               />
             </div>
             <SidebarItem
+              header="Add new Product"
+              to={NEWPRODUCT}
+              svg={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#000000"
+                  strokeWidth="2"
+                  aria-hidden="true"
+                  className="w-5 h-5"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 004.25 22.5h15.5a1.875 1.875 0 001.865-2.071l-1.263-12a1.875 1.875 0 00-1.865-1.679H16.5V6a4.5 4.5 0 10-9 0zM12 3a3 3 0 00-3 3v.75h6V6a3 3 0 00-3-3zm-3 8.25a3 3 0 106 0v-.75a.75.75 0 011.5 0v.75a4.5 4.5 0 11-9 0v-.75a.75.75 0 011.5 0v.75z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              }
+            />
+            <SidebarItem
               header="Catalog"
               to={CATALOG}
               svg={
@@ -258,7 +283,7 @@ const Navbar = () => {
                 </svg>
               }
             />
-            {currentUser && Object.keys(currentUser).length > 0 ? (
+            {isLoggedIn ? (
               <SidebarItem
                 header="Log Out"
                 onClick={logout}
@@ -269,19 +294,18 @@ const Navbar = () => {
                     fill="none"
                     stroke="#000000"
                     strokeWidth="2"
-                    aria-hidden="true"
-                    className="w-5 h-5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-log-out w-5 h-5"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M12 2.25a.75.75 0 01.75.75v9a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM6.166 5.106a.75.75 0 010 1.06 8.25 8.25 0 1011.668 0 .75.75 0 111.06-1.06c3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788a.75.75 0 011.06 0z"
-                      clipRule="evenodd"
-                    ></path>
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
                   </svg>
                 }
               />
             ) : (
-              ""
+              <></>
             )}
           </>
         )}

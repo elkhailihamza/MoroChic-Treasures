@@ -7,7 +7,6 @@ import {
 } from "react";
 import axiosClient from "../axios";
 import { useAuth } from "./AuthContext";
-import { LOGIN, UNAUTHORIZED, router } from "../App";
 
 interface UserProviderProps {
   children: ReactNode;
@@ -20,16 +19,13 @@ type userProfile = {
 };
 
 type UserContextProps = {
-  fetchMe: () => Promise<void>;
-  fetchProfile: () => Promise<void>;
   userProfile?: userProfile;
-  checkIfVendorGuard: () => Promise<boolean | undefined>;
+  isLoading?: boolean;
+  // checkIfVendorGuard: () => Promise<boolean | undefined>;
 };
 
 const UserContext = createContext<UserContextProps>({
-  fetchMe: () => Promise.resolve(),
-  fetchProfile: () => Promise.resolve(),
-  checkIfVendorGuard: () => Promise.resolve(false),
+  // checkIfVendorGuard: () => Promise.resolve(false),
 });
 
 export const useUser = () => {
@@ -37,74 +33,72 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const { setCurrentUser, currentUser } = useAuth();
+  const { setCurrentUser, setIsLoggedIn } = useAuth();
   const [userProfile, setUserProfile] = useState<userProfile | undefined>();
-  const [hasFetchedMe, setHasFetchedMe] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (!currentUser && !hasFetchedMe) {
-      fetchMe().then(() => setHasFetchedMe(true));
-    }
-  }, [currentUser]);
+    const run = async () => {
+      setIsLoading(true);
+      await fetchMe();
+      await fetchProfile();
+      setIsLoading(false);
+    };
+
+    run();
+  }, []);
 
   const fetchMe = async (): Promise<void> => {
     try {
       const response = await axiosClient.post("/me");
-      setCurrentUser(response.data.user[0]);
-      return;
+      setCurrentUser(response.data.user);
+      setIsLoggedIn(true);
+      return Promise.resolve();
     } catch (error) {
-      return Promise.reject(error);
+      return Promise.resolve();
     }
   };
-  const fetchProfile = async (): Promise<undefined> => {
+  const fetchProfile = async (): Promise<void> => {
     try {
       const response = await axiosClient.get("/profile/get");
       setUserProfile(response.data.profile);
       return;
     } catch (error) {
-      return Promise.reject(error);
+      return Promise.resolve();
     }
   };
 
-  const checkIfUserGuard = async (): Promise<boolean> => {
-    await fetchMe();
+  // const checkIfVendorGuard = async (): Promise<boolean> => {
+  //   if (
+  //     currentUser &&
+  //     Object.keys(currentUser).length > 0 &&
+  //     currentUser.role_id === 2
+  //   ) {
+  //     return true;
+  //   } else {
+  //     if (!isLoading) {
+  //       router.navigate(UNAUTHORIZED);
+  //     }
+  //     return false;
+  //   }
+  // };
 
-    if (currentUser && Object.keys(currentUser).length > 0) {
-      return true;
-    }
+  // const checkIfUserGuard = async (): Promise<boolean> => {
+  //   await fetchMe();
 
-    router.navigate(LOGIN);
-    return false;
-  };
-
-  const checkIfVendorGuard = async (): Promise<boolean | undefined> => {
-    await fetchMe();
-
-    try {
-      await fetchMe();
-
-      if (
-        currentUser &&
-        Object.keys(currentUser).length > 0 &&
-        currentUser.role_id === 2
-      ) {
-        return true;
-      } else {
-        router.navigate(UNAUTHORIZED);
-        return false;
-      }
-    } catch (error) {
-      console.error("Error fetching user:", error);
-      router.navigate(UNAUTHORIZED);
-    }
-  };
+  //   if (hasFetchedMe && currentUser && Object.keys(currentUser).length > 0) {
+  //     return true;
+  //   } else {
+  //     router.navigate(UNAUTHORIZED);
+  //     return false;
+  //   }
+  // };
 
   const values = {
-    fetchMe,
-    fetchProfile,
     userProfile,
-    checkIfUserGuard,
-    checkIfVendorGuard,
+    // checkIfUserGuard,
+    // checkIfVendorGuard,
+    isLoading,
   };
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;

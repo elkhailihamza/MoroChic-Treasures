@@ -29,6 +29,7 @@ type currentUser = {
 
 type AuthContextType = {
   isLoggedIn: boolean;
+  setIsLoggedIn: (value: boolean) => void;
   currentUser: currentUser;
   setCurrentUser: (_user: currentUser) => void;
   storeAccess: (_token: string) => boolean;
@@ -40,6 +41,7 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType>({
   isLoggedIn: false,
+  setIsLoggedIn: () => {},
   currentUser: {},
   setCurrentUser: (_user) => {},
   storeAccess: (_token) => false,
@@ -54,7 +56,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: authContextProps) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<currentUser>({});
   const [errors, setErrors] = useState<errors>({});
 
@@ -81,7 +83,6 @@ export const AuthProvider = ({ children }: authContextProps) => {
       setErrors({} as errors);
       return Promise.resolve(true);
     } catch (error: any) {
-      console.log(error.response.data.errors);
       setErrors(error?.response?.data?.errors ?? {});
       return false;
     }
@@ -89,16 +90,18 @@ export const AuthProvider = ({ children }: authContextProps) => {
 
   const logout = async () => {
     try {
-      const response = await axiosClient.post("/logout");
+      await axiosClient.post("/logout");
       localStorage.clear();
-      return response;
+      window.location.reload();
+      return;
     } catch (error) {
-      console.error(error);
+      return;
     }
   };
 
   const value = {
     isLoggedIn,
+    setIsLoggedIn,
     currentUser,
     setCurrentUser,
     storeAccess,

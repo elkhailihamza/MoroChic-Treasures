@@ -15,26 +15,12 @@ import {
   REGISTER,
   SETTINGS,
 } from "../../App";
-import { useEffect, useState } from "react";
 import { SpinnerCircular } from "spinners-react";
 import { useUser } from "../../contexts/UserContext";
 
 const Navbar = () => {
-  const { logout, currentUser } = useAuth();
-  const [isLoading, setIsLoading] = useState(false);
-  const { fetchMe } = useUser();
-  useEffect(() => {
-    const fetchUser = async () => {
-      setIsLoading(true);
-      try {
-        await fetchMe();
-      } catch (error) {
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchUser();
-  }, []);
+  const { logout, currentUser, isLoggedIn } = useAuth();
+  const { isLoading } = useUser();
   return (
     <>
       <nav className="bg-[#FFFFFF] shadow-sm fixed top-0 left-0 w-full z-40">
@@ -408,7 +394,7 @@ const Navbar = () => {
                 </svg>
               }
             />
-            {currentUser && Object.keys(currentUser).length > 0 ? (
+            {isLoggedIn ? (
               <SidebarItem
                 header="Log Out"
                 onClick={logout}

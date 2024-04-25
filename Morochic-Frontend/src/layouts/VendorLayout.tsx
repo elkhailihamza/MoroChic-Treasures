@@ -1,36 +1,26 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../sections/Vendor/NavbarSection";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SpinnerCircular } from "spinners-react";
 import { useUser } from "../contexts/UserContext";
+import { UNAUTHORIZED, router } from "../App";
 
 export const VendorLayout = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const { checkIfVendorGuard } = useUser();
+  // const { isLoading, checkIfVendorGuard } = useUser();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      if (await checkIfVendorGuard()) {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     await checkIfVendorGuard();
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <div className="vendor-layout">
-      {isLoading ? (
-        <div className="flex justify-center items-center h-screen">
-          <SpinnerCircular color="#000000" />
-        </div>
-      ) : (
-        <>
-          <Navbar />
-          <Outlet />
-        </>
-      )}
+      <>
+        <Navbar />
+        <Outlet />
+      </>
     </div>
   );
 };

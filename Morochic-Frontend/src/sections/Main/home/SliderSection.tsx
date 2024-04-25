@@ -44,7 +44,7 @@ export const Slider = () => {
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
-          <div className="relative md:w-60 w-28 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-20 left-20">
+          <div className="md:w-60 w-28 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-20 left-20">
             <h1 className="font-medium  lg:text-[22px] md:text-[16px] text-[13px]">
               Something Text
             </h1>
