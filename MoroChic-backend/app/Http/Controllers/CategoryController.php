@@ -29,4 +29,12 @@ class CategoryController extends Controller
             ], 422);
         }
     }
+
+    public function getCategories()
+    {
+        $categories = Category::get();
+        return response()->json([
+            'categories' => $categories,
+        ], 200);
+    }
 }

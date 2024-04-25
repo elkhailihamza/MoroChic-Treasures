@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ProductImagesController extends Controller
 {
-    public function store($images, $product)
+    public function uploadImages($images, $product)
     {
         foreach ($images as $image) :
             $imagePath = $image->store('images', 'public');
