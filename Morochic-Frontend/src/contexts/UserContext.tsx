@@ -18,14 +18,22 @@ type userProfile = {
   avatar?: string;
 };
 
+type wishlist = {
+  user_id?: number;
+  product_id?: number;
+};
+
 type UserContextProps = {
   userProfile?: userProfile;
   isLoading?: boolean;
+  wishlist?: wishlist;
+  fetchWishlist: () => Promise<void>;
   // checkIfVendorGuard: () => Promise<boolean | undefined>;
 };
 
 const UserContext = createContext<UserContextProps>({
   // checkIfVendorGuard: () => Promise.resolve(false),
+  fetchWishlist: () => Promise.resolve(),
 });
 
 export const useUser = () => {
@@ -35,6 +43,7 @@ export const useUser = () => {
 export const UserProvider = ({ children }: UserProviderProps) => {
   const { setCurrentUser, setIsLoggedIn } = useAuth();
   const [userProfile, setUserProfile] = useState<userProfile | undefined>();
+  const [wishlist, setWishlist] = useState<wishlist>({});
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -68,6 +77,16 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     }
   };
 
+  const fetchWishlist = async (): Promise<void> => {
+    try {
+      const response = await axiosClient.get("/wishlist/get");
+      setWishlist(response.data.wishlist);
+      return Promise.resolve();
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  };
+
   // const checkIfVendorGuard = async (): Promise<boolean> => {
   //   if (
   //     currentUser &&
@@ -98,6 +117,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     userProfile,
     // checkIfUserGuard,
     // checkIfVendorGuard,
+    fetchWishlist,
+    wishlist,
     isLoading,
   };
 

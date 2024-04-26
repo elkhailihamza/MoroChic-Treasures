@@ -17,10 +17,11 @@ import {
 } from "../../App";
 import { SpinnerCircular } from "spinners-react";
 import { useUser } from "../../contexts/UserContext";
+import moment from "moment";
 
 const Navbar = () => {
   const { logout, currentUser, isLoggedIn } = useAuth();
-  const { isLoading } = useUser();
+  const { isLoading, wishlist, fetchWishlist } = useUser();
   return (
     <>
       <nav className="bg-[#FFFFFF] shadow-sm fixed top-0 left-0 w-full z-40">
@@ -66,7 +67,7 @@ const Navbar = () => {
             <div className="hidden w-full md:block md:w-auto md:block hidden">
               <ul className="flex flex-col gap-2 justify-center font-medium md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0">
                 <div className="flex gap-4 justify-center">
-                  <li data-dropdown-toggle="WishList">
+                  <li data-dropdown-toggle="WishList" onClick={fetchWishlist}>
                     <span className="block cursor-pointer text-white bg-blue-700 rounded sm:bg-transparent rounded-full md:text-blue-700 md:p-0">
                       <svg
                         className="hover:fill-gray-200"
@@ -90,23 +91,26 @@ const Navbar = () => {
                         <SpinnerCircular color="#000000" />
                       </div>
                     ) : currentUser && Object.keys(currentUser).length > 0 ? (
-                      <div className="h-full flex justify-center items-center">
-                        <h1 className="text-center text-sm text-slate-500 font-regular">
-                          <Link
-                            className="text-blue-700 hover:underline"
-                            to={LOGIN}
-                          >
-                            Login
-                          </Link>{" "}
-                          or{" "}
-                          <Link
-                            className="text-blue-700 hover:underline"
-                            to={REGISTER}
-                          >
-                            Make an Account
-                          </Link>{" "}
-                          to uselo gege
-                        </h1>
+                      <div className="h-full overflow-auto">
+                        {wishlist &&
+                        Array.isArray(wishlist) &&
+                        wishlist.length > 0 ? (
+                          wishlist.map((wishedItem, key) => (
+                            <Link
+                              key={key}
+                              to={"catalog/product/" + wishedItem.id}
+                              className="h-20 w-full"
+                            >
+                              <div className="p-5 bg-gray-100 text-sm hover:bg-gray-200 border-b-2 border-slate-700">
+                                <h1><span className="font-bold">Title:</span> {wishedItem.title}</h1>
+            
+                                <h2>{moment(wishedItem.created_at).fromNow()}</h2>
+                              </div>
+                            </Link>
+                          ))
+                        ) : (
+                          <></>
+                        )}
                       </div>
                     ) : (
                       <div className="h-full flex justify-center items-center">
@@ -274,23 +278,6 @@ const Navbar = () => {
         ) : (
           <>
             <div className="md:hidden block">
-              <SidebarItem
-                header="WishList"
-                svg={
-                  <svg
-                    className="w-5 h-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#000000"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                  </svg>
-                }
-              />
               <SidebarItem
                 header="Shopping Cart"
                 to={CART}
