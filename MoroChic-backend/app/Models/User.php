@@ -27,6 +27,11 @@ class User extends Authenticatable
         return $this->hasMany(Product::class, 'user_id');
     }
 
+    public function wishlist()
+    {
+        return $this->hasOne(wishlist::class, "user_id");
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');

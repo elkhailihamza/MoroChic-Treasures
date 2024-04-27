@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductImagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\WishlistController;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,8 +47,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile/get', 'getUserProfile');
         Route::post('/profile/update/avatar', 'updateAvatar');
+        Route::post('/profile/remove/avatar', 'removeAvatar');
         Route::post('/profile/update/info', 'updateInfo');
     });
+    Route::get("/wishlist/get", [WishlistController::class, "index"]);
+    Route::post("/wishlist/send", [WishlistController::class, "store"]);
+    Route::get("/wishlist/check", [WishlistController::class, "check"]);
 });
 
 Route::get('/products/view', [ProductController::class, 'index']);

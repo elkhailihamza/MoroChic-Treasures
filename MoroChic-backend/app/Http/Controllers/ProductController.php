@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     protected $ProductImagesController;
 
-    public function __construct(ProductImagesController $ProductImagesController) // or ImageUtility $imageService
+    public function __construct(ProductImagesController $ProductImagesController)
     {
         $this->ProductImagesController = $ProductImagesController;
     }
@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function getProduct($id)
     {
         try {
-            $product = Product::findOrFail($id);
+            $product = Product::with("product_images")->findOrFail($id);
             return response()->json($product, 200);
         } catch (Exception $e) {
             return response()->json(['message' => 'Product not found'], 404);
@@ -53,7 +53,8 @@ class ProductController extends Controller
                 'mini-body' => 'required|string',
                 'body' => 'required|string|max:8000',
                 'stock' => 'required|integer|between:1,999',
-                'images.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+                'images.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'category' => 'required',
             ]);
 
             DB::beginTransaction();
@@ -65,12 +66,12 @@ class ProductController extends Controller
                     'body' => $request->input('body'),
                     'stock' => $request->input('stock'),
                     'user_id' => $request->user()->id,
-                    'category_id' => $request->input('category') ?? NULL,
+                    'category_id' => $request->input('category'),
                 ]
             );
 
             if ($request->has('images') && is_array($request->images)) {
-                $this->ProductImagesController->uploadImages($request->images, $product);
+                $this->ProductImagesController->uploadImages($request->input('images'), $product);
             }
 
             if ($request->has('tags_to_add') || $request->has('tags_to_remove')) {

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class ProfileController extends Controller
@@ -38,13 +40,28 @@ class ProfileController extends Controller
         ], 201);
     }
 
+    public function removeAvatar(Request $request)
+    {
+        $user = $request->user();
+        $avatar = $user->profile->avatar;
+        if ($avatar) {
+            if (file_exists(public_path($avatar))) {
+                unlink(public_path($avatar));
+            }
+            $user->profile()->update(['avatar' => null]);
+        }
+        return response()->json([
+            'message' => 'Avatar removed successfully!',
+        ], 200);
+    }
+
     public function updateInfo(Request $request)
     {
         try {
             $userInfo = $request->validate([
-                "firstname" => "required|string|max:255",
-                "lastname" => "required|string|max:255",
-                "Bio" => "nullable|string|max:500",
+                "firstname" => "nullable|string|max:255",
+                "lastname" => "nullable|string|max:255",
+                "bio" => "nullable|string|max:500",
             ]);
 
             $user = $request->user();
@@ -52,19 +69,29 @@ class ProfileController extends Controller
             $user->firstname = $userInfo["firstname"];
             $user->lastname = $userInfo["lastname"];
 
-            if (isset($userInfo['Bio'])) {
-                $user->profile->bio = $userInfo['Bio'];
+            if (isset($userInfo['bio'])) {
+                $user->profile->bio = $userInfo['bio'];
             }
 
+            DB::beginTransaction();
             $user->save();
+            $user->profile->save();
+            DB::commit();
             return response()->json([
                 'message' => 'User updated successfully!',
                 'User' => $user->fresh(),
             ], 201);
         } catch (ValidationException $e) {
+            DB::rollBack();
             return response()->json([
                 'message' => "Update User Failed!",
                 'errors' => $e->validator->errors()->all(),
+            ]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Profile Update Failed!',
+                'error' => $e->getMessage(),
             ]);
         }
     }
