@@ -21,7 +21,7 @@ import moment from "moment";
 
 const Navbar = () => {
   const { logout, currentUser, isLoggedIn } = useAuth();
-  const { isLoading, wishlist, fetchWishlist } = useUser();
+  const { isLoading, wishlist, fetchWishlist, wishlistIsLoading } = useUser();
   return (
     <>
       <nav className="bg-[#FFFFFF] shadow-sm fixed top-0 left-0 w-full z-40">
@@ -86,7 +86,7 @@ const Navbar = () => {
                     </span>
                   </li>
                   <WishListDropdown id="WishList">
-                    {isLoading ? (
+                    {wishlistIsLoading ? (
                       <div className="flex h-[95%] justify-center items-center">
                         <SpinnerCircular color="#000000" />
                       </div>
@@ -102,9 +102,14 @@ const Navbar = () => {
                               className="h-20 w-full"
                             >
                               <div className="p-5 bg-gray-100 text-sm hover:bg-gray-200 border-b-2 border-slate-700">
-                                <h1><span className="font-bold">Title:</span> {wishedItem.title}</h1>
-            
-                                <h2>{moment(wishedItem.created_at).fromNow()}</h2>
+                                <h1>
+                                  <span className="font-bold">Title:</span>{" "}
+                                  {wishedItem.title}
+                                </h1>
+
+                                <h2>
+                                  {moment(wishedItem.created_at).fromNow()}
+                                </h2>
                               </div>
                             </Link>
                           ))

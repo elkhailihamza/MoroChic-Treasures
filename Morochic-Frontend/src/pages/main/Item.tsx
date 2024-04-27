@@ -21,7 +21,7 @@ export const Item = () => {
   } = useProduct();
   const { isLoggedIn } = useAuth();
 
-  const [wishlistIsLoading, setWishlistIsLoading] = useState(false);
+  const [wishlistIsLoading, setWishlistIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,29 +44,23 @@ export const Item = () => {
       <TopSection />
       <div className="flex justify-center gap-5 p-4 mt-10">
         {isLoggedIn ? (
-          hasWishlisted ? (
-            wishlistIsLoading ? (
-              <div className="me-10">
-                <SpinnerCircular size={40} color="#000000" />
-              </div>
-            ) : (
-              <Button
-                base={false}
-                onClick={async () => {
-                  setWishlistIsLoading(true);
-                  await wishlistItem(Number(id), hasWishlisted);
-                  setWishlistIsLoading(false);
-                }}
-                color="#C50000"
-                className="text-white px-3 py-2 rounded-md"
-              >
-                Remove from Wishlist
-              </Button>
-            )
-          ) : wishlistIsLoading ? (
+          wishlistIsLoading ? (
             <div className="me-10">
               <SpinnerCircular size={40} color="#000000" />
             </div>
+          ) : hasWishlisted ? (
+            <Button
+              base={false}
+              onClick={async () => {
+                setWishlistIsLoading(true);
+                await wishlistItem(Number(id), hasWishlisted);
+                setWishlistIsLoading(false);
+              }}
+              color="#C50000"
+              className="text-white px-3 py-2 rounded-md"
+            >
+              Remove from Wishlist
+            </Button>
           ) : (
             <Button
               base={false}

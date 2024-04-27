@@ -24,10 +24,11 @@ type wishlist = {
 };
 
 type UserContextProps = {
+  fetchWishlist: () => Promise<void>;
+  wishlist?: wishlist;
+  wishlistIsLoading?: boolean;
   userProfile?: userProfile;
   isLoading?: boolean;
-  wishlist?: wishlist;
-  fetchWishlist: () => Promise<void>;
 };
 
 const UserContext = createContext<UserContextProps>({
@@ -43,6 +44,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const [userProfile, setUserProfile] = useState<userProfile | undefined>();
   const [wishlist, setWishlist] = useState<wishlist>({});
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [wishlistIsLoading, setWishlistIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const run = async () => {
@@ -76,20 +78,23 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   };
 
   const fetchWishlist = async (): Promise<void> => {
+    setWishlistIsLoading(true);
     try {
       const response = await axiosClient.get("/wishlist/get");
       setWishlist(response.data.wishlist);
-      console.log(response);
       return Promise.resolve();
     } catch (error) {
       return Promise.reject(error);
+    } finally {
+      setWishlistIsLoading(false);
     }
   };
 
   const values = {
-    userProfile,
     fetchWishlist,
     wishlist,
+    wishlistIsLoading,
+    userProfile,
     isLoading,
   };
 

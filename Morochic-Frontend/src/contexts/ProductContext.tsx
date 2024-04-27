@@ -51,6 +51,7 @@ type ProductContextProps = {
   imageUrls?: string[] | undefined;
   selectedImage?: string | undefined;
   productData: dataType;
+  wishlistButtonIsLoading?: boolean;
 };
 
 const ProductContext = createContext<ProductContextProps>({
@@ -71,6 +72,8 @@ export const useProduct = () => {
 export const ProductProvider = ({ children }: ProductProviderProps) => {
   const [isProductLoading, setIsProductLoading] = useState<boolean>(true);
   const [hasWishlisted, setHasWishlisted] = useState<boolean>(false);
+  const [wishlistButtonIsLoading, setWishlistButtonIsLoading] =
+    useState<boolean>(true);
   const [selectedImage, setSelectedImage] = useState<string | undefined>();
   const [selectedProduct, setSelectedProduct] = useState();
   const [imageUrls, setImageUrls] = useState<string[]>();
@@ -158,6 +161,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
   };
 
   const wishlistItem = async (id: number, isWishlisted: boolean) => {
+    setWishlistButtonIsLoading(true);
     try {
       await axiosClient.post(`/wishlist/send`, {
         id: id,
@@ -168,6 +172,8 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     } catch (error) {
       console.error(error);
       return false;
+    } finally {
+      setWishlistButtonIsLoading(false);
     }
   };
 
@@ -176,7 +182,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
       const response = await axiosClient.get(`/wishlist/check`, {
         params: { id: id },
       });
-      setHasWishlisted(response.data);
+      setHasWishlisted(response.data.hasWishlisted);
       return true;
     } catch (error) {
       console.error(error);
@@ -198,6 +204,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     imageUrls,
     selectedImage,
     productData,
+    wishlistButtonIsLoading,
   };
 
   return (
