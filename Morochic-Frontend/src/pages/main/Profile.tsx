@@ -314,7 +314,7 @@ export const Profile = () => {
               </div>
             </div>
           </div>
-          <div className="w-full p-5 mt-5">
+          <div className="w-full py-10 lg:px-40 md:px-20 mt-5">
             <h1 className="text-xl font-medium underline">Bio:</h1>
             <p className="px-5 py-1 text-sm">
               {userProfile?.bio ?? "Welcome to my profile!"}
