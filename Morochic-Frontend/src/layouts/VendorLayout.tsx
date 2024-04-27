@@ -1,19 +1,19 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../sections/Vendor/NavbarSection";
-import { useEffect } from "react";
-import { SpinnerCircular } from "spinners-react";
+import { useAuth } from "../contexts/AuthContext";
 import { useUser } from "../contexts/UserContext";
+import { useEffect } from "react";
 import { UNAUTHORIZED, router } from "../App";
 
 export const VendorLayout = () => {
-  // const { isLoading, checkIfVendorGuard } = useUser();
+  const { isLoading } = useUser();
+  const { currentUser, isLoggedIn } = useAuth();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     await checkIfVendorGuard();
-  //   };
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    isLoggedIn && currentUser.role_id == 2 && isLoading === false
+      ? ""
+      : router.navigate(UNAUTHORIZED);
+  }, []);
 
   return (
     <div className="vendor-layout">

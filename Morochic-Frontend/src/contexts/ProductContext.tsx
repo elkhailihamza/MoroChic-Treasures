@@ -13,10 +13,14 @@ interface ProductProviderProps {
   children: ReactNode;
 }
 type productType = {
-  id: string;
-  title: string;
-  body: string;
-  stock: number;
+  id?: string;
+  title?: string;
+  price?: string;
+  "mini-body"?: string;
+  body?: string;
+  stock?: string;
+  category?: string;
+  images?: File[];
 };
 
 type dataType = {
@@ -37,11 +41,15 @@ type ProductContextProps = {
     >
   ) => void;
   handleProductSubmit: (e: FormEvent<HTMLFormElement>) => void;
-  selectedProduct: productType | undefined;
-  isProductLoading: boolean;
-  imageUrls: string[] | undefined;
-  selectedImage: string | undefined;
+  wishlistItem: (id: number, isWishlisted: boolean) => Promise<boolean>;
   setSelectedImage: (image: string | undefined) => void;
+  setIsProductLoading: (isLoading: boolean) => void;
+  checkWishListItem: (id: number) => Promise<boolean>;
+  hasWishlisted?: boolean;
+  selectedProduct?: productType | undefined;
+  isProductLoading?: boolean;
+  imageUrls?: string[] | undefined;
+  selectedImage?: string | undefined;
   productData: dataType;
 };
 
@@ -49,10 +57,9 @@ const ProductContext = createContext<ProductContextProps>({
   fetchInfo: () => Promise.resolve(),
   handleProductInfoChange: () => {},
   handleProductSubmit: () => {},
-  selectedProduct: undefined,
-  isProductLoading: true,
-  imageUrls: [],
-  selectedImage: "",
+  wishlistItem: () => Promise.resolve(false),
+  checkWishListItem: () => Promise.resolve(false),
+  setIsProductLoading: () => {},
   setSelectedImage: () => {},
   productData: {},
 });
@@ -63,6 +70,7 @@ export const useProduct = () => {
 
 export const ProductProvider = ({ children }: ProductProviderProps) => {
   const [isProductLoading, setIsProductLoading] = useState<boolean>(true);
+  const [hasWishlisted, setHasWishlisted] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<string | undefined>();
   const [selectedProduct, setSelectedProduct] = useState();
   const [imageUrls, setImageUrls] = useState<string[]>();
@@ -116,6 +124,15 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         "/vendor/products/store",
         productData
       );
+      setProductData({
+        title: "",
+        price: "",
+        "mini-Body": "",
+        body: "",
+        stock: "",
+        category: "",
+        images: [] as File[],
+      });
       console.log(response);
       router.navigate(VENDORCREATE);
     } catch (error) {
@@ -129,7 +146,6 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
   //   }
   const fetchInfo = async (id: number) => {
     try {
-      setIsProductLoading(true);
       const response = await axiosClient.get(`/product/get/${id}`);
       setSelectedProduct(response.data);
       setIsProductLoading(false);
@@ -141,15 +157,46 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     }
   };
 
+  const wishlistItem = async (id: number, isWishlisted: boolean) => {
+    try {
+      await axiosClient.post(`/wishlist/send`, {
+        id: id,
+        isWishlisted: isWishlisted,
+      });
+      setHasWishlisted(!isWishlisted);
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
+
+  const checkWishListItem = async (id: number) => {
+    try {
+      const response = await axiosClient.get(`/wishlist/check`, {
+        params: { id: id },
+      });
+      setHasWishlisted(response.data);
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
+
   const values = {
     fetchInfo,
-    selectedProduct,
-    isProductLoading,
+    setSelectedImage,
+    setIsProductLoading,
     handleProductInfoChange,
     handleProductSubmit,
+    wishlistItem,
+    checkWishListItem,
+    selectedProduct,
+    isProductLoading,
+    hasWishlisted,
     imageUrls,
     selectedImage,
-    setSelectedImage,
     productData,
   };
 

@@ -29,6 +29,7 @@ import { ShoppingCart } from "./pages/main/ShoppingCart";
 import { NewProduct } from "./pages/vendor/NewProduct";
 import { ProductProvider } from "./contexts/ProductContext";
 import { ProductTemplate } from "./pages/vendor/ProductTemplate";
+import { UserLayout } from "./layouts/UserLayout";
 
 export const LOGIN = "/auth/login";
 export const REGISTER = "/auth/register";
@@ -61,10 +62,12 @@ export const router = createBrowserRouter(
       <Route element={<MainLayout />}>
         <Route index element={<HomeMain />} />
         <Route path="about" element={<AboutUs />} />
-        <Route path="profile" element={<Profile />} />
         <Route path="catalog" element={<Catalog />} />
         <Route path="catalog/product/:id" element={<Item />} />
         <Route path="cart" element={<ShoppingCart />} />
+      </Route>
+      <Route element={<UserLayout />}>
+        <Route path="profile" element={<Profile />} />
       </Route>
       <Route path="vendor" element={<VendorLayout />}>
         <Route index element={<HomeVendor />} />

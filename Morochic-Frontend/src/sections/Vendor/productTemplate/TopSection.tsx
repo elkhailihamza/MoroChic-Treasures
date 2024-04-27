@@ -36,7 +36,7 @@ export const TopSection = () => {
               className="sr-only"
             />
             <span>
-              {imageUrls && imageUrls.length > 0 ? (
+              {imageUrls && selectedImage && imageUrls.length > 0 ? (
                 <Image
                   className="h-full w-full object-cover"
                   src={selectedImage}
@@ -90,7 +90,7 @@ export const TopSection = () => {
             className="text-center border-0"
             type="text"
             placeholder="Title*"
-            value={productData.title}
+            value={productData?.title}
             onChange={handleProductInfoChange}
           />
         </div>
@@ -99,7 +99,7 @@ export const TopSection = () => {
             <span className="text-[#BC6C25]">$</span>
             <Input
               name="price"
-              value={productData.price}
+              value={productData?.price}
               base={false}
               onChange={handleProductInfoChange}
               className="w-20 focus:outline-none rounded border-0"
@@ -113,7 +113,7 @@ export const TopSection = () => {
           <Textarea
             name="mini-body"
             className="h-72 rounded w-full"
-            value={productData['mini-body']}
+            value={productData?.['mini-body']}
             base={false}
             resize={false}
             onChange={handleProductInfoChange}

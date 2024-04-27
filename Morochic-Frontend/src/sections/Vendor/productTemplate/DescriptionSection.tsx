@@ -12,7 +12,7 @@ export const DescriptionSection = () => {
             name="body"
             maxLength={8000}
             className="w-full h-96"
-            value={productData.body}
+            value={productData?.body}
             onChange={handleProductInfoChange}
             base={false}
             placeholder="Description*"

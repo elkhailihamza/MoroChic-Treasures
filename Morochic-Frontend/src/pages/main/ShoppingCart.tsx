@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import { LOGIN, REGISTER } from "../../App";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import { useUser } from "../../contexts/UserContext";
 import { SpinnerCircular } from "spinners-react";
 
 export const ShoppingCart = () => {
   const { currentUser } = useAuth();
-  const { fetchMe } = useUser();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   

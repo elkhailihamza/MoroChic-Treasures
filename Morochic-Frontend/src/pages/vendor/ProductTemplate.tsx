@@ -83,7 +83,7 @@ export const ProductTemplate = () => {
                       name="category"
                       className="w-96"
                       onChange={handleProductInfoChange}
-                      value={productData.category}
+                      value={productData?.category}
                     >
                       <option value="" disabled hidden>
                         Categories*
@@ -104,7 +104,7 @@ export const ProductTemplate = () => {
                     </select>
                     <Input
                       name="stock"
-                      value={productData.stock}
+                      value={productData?.stock}
                       placeholder="Stock*"
                       base={false}
                       className="border w-96 mt-5"

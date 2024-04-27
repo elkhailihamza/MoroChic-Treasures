@@ -28,11 +28,9 @@ type UserContextProps = {
   isLoading?: boolean;
   wishlist?: wishlist;
   fetchWishlist: () => Promise<void>;
-  // checkIfVendorGuard: () => Promise<boolean | undefined>;
 };
 
 const UserContext = createContext<UserContextProps>({
-  // checkIfVendorGuard: () => Promise.resolve(false),
   fetchWishlist: () => Promise.resolve(),
 });
 
@@ -64,16 +62,16 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       setIsLoggedIn(true);
       return Promise.resolve();
     } catch (error) {
-      return Promise.resolve();
+      return Promise.reject();
     }
   };
   const fetchProfile = async (): Promise<void> => {
     try {
       const response = await axiosClient.get("/profile/get");
       setUserProfile(response.data.profile);
-      return;
-    } catch (error) {
       return Promise.resolve();
+    } catch (error) {
+      return Promise.reject(error);
     }
   };
 
@@ -81,42 +79,15 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     try {
       const response = await axiosClient.get("/wishlist/get");
       setWishlist(response.data.wishlist);
+      console.log(response);
       return Promise.resolve();
     } catch (error) {
       return Promise.reject(error);
     }
   };
 
-  // const checkIfVendorGuard = async (): Promise<boolean> => {
-  //   if (
-  //     currentUser &&
-  //     Object.keys(currentUser).length > 0 &&
-  //     currentUser.role_id === 2
-  //   ) {
-  //     return true;
-  //   } else {
-  //     if (!isLoading) {
-  //       router.navigate(UNAUTHORIZED);
-  //     }
-  //     return false;
-  //   }
-  // };
-
-  // const checkIfUserGuard = async (): Promise<boolean> => {
-  //   await fetchMe();
-
-  //   if (hasFetchedMe && currentUser && Object.keys(currentUser).length > 0) {
-  //     return true;
-  //   } else {
-  //     router.navigate(UNAUTHORIZED);
-  //     return false;
-  //   }
-  // };
-
   const values = {
     userProfile,
-    // checkIfUserGuard,
-    // checkIfVendorGuard,
     fetchWishlist,
     wishlist,
     isLoading,

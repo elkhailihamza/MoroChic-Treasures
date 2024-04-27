@@ -2,6 +2,8 @@ import { ItemRatingSVG } from "../../../components/ItemRatingSVG";
 import { RightPointingArrowSVG } from "../../../components/RightPointingArrowSVG";
 import { ItemCard } from "../../../components/ItemCard";
 import { useProduct } from "../../../contexts/ProductContext";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export const TopSection = () => {
   const { selectedProduct } = useProduct();
@@ -13,30 +15,13 @@ export const TopSection = () => {
         </div>
         <div className="flex justify-between">
           <div className="flex carousel gap-4 h-20">
-            <ItemCard
-              className="carousel-item w-20 rounded-[16px]"
-              base={false}
-            ></ItemCard>
-            <ItemCard
-              className="carousel-item w-20 rounded-[16px]"
-              base={false}
-            ></ItemCard>
-            <ItemCard
-              className="carousel-item w-20 rounded-2xl"
-              base={false}
-            ></ItemCard>
-            <ItemCard
-              className="carousel-item w-20 rounded-2xl"
-              base={false}
-            ></ItemCard>
-            <ItemCard
-              className="carousel-item w-20 rounded-2xl"
-              base={false}
-            ></ItemCard>
-            <ItemCard
-              className="carousel-item w-20 rounded-2xl"
-              base={false}
-            ></ItemCard>
+            {selectedProduct && Object.keys(selectedProduct).length > 0 ? (
+              <>
+                {/* {selectedProduct.} */}
+              </>
+            ) : (
+              <></>
+            )}
           </div>
           <RightPointingArrowSVG
             className="border-s-0 h-full cursor-pointer hover:bg-slate-200 rounded-bl-none rounded-tl-none rounded-lg"
@@ -46,15 +31,15 @@ export const TopSection = () => {
         </div>
       </div>
       <div className="md:w-96 w-[80%] mt-2">
-        <h1 className="text-center font-semibold text-2xl">Item</h1>
+        <h1 className="text-center font-semibold text-2xl">{selectedProduct?.title}</h1>
         <div className="flex justify-between items-center mt-4 px-2">
           <h1 className="text-xl">
-            <span className="text-[#BC6C25]">$</span>19.99
+            <span className="text-[#BC6C25]">$</span>{selectedProduct?.stock}
           </h1>
           <ItemRatingSVG />
         </div>
         <div className="mt-7">
-          <p>{}</p>
+          <p>{selectedProduct?.["mini-body"]}</p>
         </div>
       </div>
     </div>

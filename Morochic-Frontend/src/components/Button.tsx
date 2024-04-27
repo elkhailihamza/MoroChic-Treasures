@@ -6,6 +6,7 @@ interface btnProps {
   children?: ReactNode;
   color?: string;
   base?: boolean;
+  transparent?: boolean;
   onMouseOver?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onMouseOut?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -17,6 +18,7 @@ const Button = ({
   children,
   color = "#BC6C25",
   base = true,
+  transparent = false,
   onMouseOver,
   onMouseOut,
   onClick,
@@ -24,7 +26,6 @@ const Button = ({
   return (
     <button
       type={type}
-      // style={{ backgroundColor: color }}
       className={`${className + " " + color} ${
         base &&
         " lg:py-[16px] lg:px-[20px] md:py-[16px] md:px-[16px] md:text-[16px] py-[13px] px-[13px] text-[13px] font-semibold rounded text-white hover:underline"
@@ -32,7 +33,7 @@ const Button = ({
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       onClick={onClick}
-      style={{ backgroundColor: color }}
+      style={transparent ? {} : { backgroundColor: color }}
     >
       {children}
     </button>
