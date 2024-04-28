@@ -10,10 +10,10 @@ export const VendorLayout = () => {
   const { currentUser, isLoggedIn } = useAuth();
 
   useEffect(() => {
-    isLoggedIn && currentUser.role_id == 2 && isLoading === false
-      ? ""
-      : router.navigate(UNAUTHORIZED);
-  }, []);
+    if (isLoggedIn && currentUser.role_id !== 2 && !isLoading) {
+      router.navigate(UNAUTHORIZED);
+    }
+  }, [isLoggedIn, currentUser.role_id, isLoading]);
 
   return (
     <div className="vendor-layout">

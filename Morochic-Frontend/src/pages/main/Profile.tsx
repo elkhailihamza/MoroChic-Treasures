@@ -24,7 +24,7 @@ export const Profile = () => {
   });
   const [selectedImage, setSelectedImage] = useState<string | null>();
   const [imagePreview, setImagePreview] = useState<File | null>();
-  const [imageIsLoading, setImageIsLoading] = useState<boolean>(false);
+  const [imageIsLoading, setImageIsLoading] = useState<boolean>(true);
   const [submittingDataIsLoading, setSubmittingDataIsLoading] =
     useState<boolean>(false);
   const [changesMade, setChangesMade] = useState<boolean>(false);
@@ -166,7 +166,7 @@ export const Profile = () => {
                         onClick={() => {
                           handleImageRemoval();
                         }}
-                        className="w-full h-full opacity-0 hover:opacity-95 bg-red-700 flex justify-center items-center rounded-full transition-all"
+                        className="w-full h-full opacity-0 hover:opacity-95 bg-red-500 flex justify-center items-center rounded-full transition-all"
                       >
                         Remove
                       </div>
@@ -286,7 +286,7 @@ export const Profile = () => {
               </form>
             </div>
             <div>
-              <div className="md:block hidden text-center">
+              <div className="text-center">
                 <h1 className="text-2xl">User Details:</h1>
               </div>
               <div className="h-full flex flex-col justify-center ">

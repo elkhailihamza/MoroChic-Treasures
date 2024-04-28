@@ -49,22 +49,22 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   useEffect(() => {
     const run = async () => {
       setIsLoading(true);
-      await fetchMe();
-      await fetchProfile();
+      const response = await fetchMe();
+      response && await fetchProfile();
       setIsLoading(false);
     };
 
     run();
   }, []);
 
-  const fetchMe = async (): Promise<void> => {
+  const fetchMe = async (): Promise<boolean> => {
     try {
       const response = await axiosClient.post("/me");
       setCurrentUser(response.data.user);
       setIsLoggedIn(true);
-      return Promise.resolve();
+      return Promise.resolve(true);
     } catch (error) {
-      return Promise.reject();
+      return Promise.resolve(false);
     }
   };
   const fetchProfile = async (): Promise<void> => {
@@ -73,7 +73,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       setUserProfile(response.data.profile);
       return Promise.resolve();
     } catch (error) {
-      return Promise.reject(error);
+      return Promise.resolve();
     }
   };
 
@@ -84,7 +84,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       setWishlist(response.data.wishlist);
       return Promise.resolve();
     } catch (error) {
-      return Promise.reject(error);
+      return Promise.resolve();
     } finally {
       setWishlistIsLoading(false);
     }

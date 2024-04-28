@@ -12,7 +12,8 @@ import { NOTFOUND, UNAUTHORIZED, VENDORCREATE, router } from "../App";
 interface ProductProviderProps {
   children: ReactNode;
 }
-type productType = {
+
+type productType = Array<{
   id?: string;
   title?: string;
   price?: string;
@@ -21,9 +22,16 @@ type productType = {
   stock?: string;
   category?: string;
   images?: File[];
+}>;
+
+type categoryType = {
+  id: string;
+  category_name: string;
+  info: string;
 };
 
 type dataType = {
+  id?: string;
   title?: string;
   price?: string;
   "mini-body"?: string;
@@ -45,8 +53,17 @@ type ProductContextProps = {
   setSelectedImage: (image: string | undefined) => void;
   setIsProductLoading: (isLoading: boolean) => void;
   checkWishListItem: (id: number) => Promise<boolean>;
+  addToCart: (product: number) => void;
+  getCartItems: () => void;
+  checkCartItem: (id: number) => void;
+  setSelectedCategory: (value: categoryType) => void;
+  fetchCategories: () => Promise<void>;
+  categories?: categoryType[];
+  selectedCategory?: categoryType;
+  hasAddedToCart?: boolean;
+  cartItems?: productType;
   hasWishlisted?: boolean;
-  selectedProduct?: productType | undefined;
+  selectedProduct?: dataType;
   isProductLoading?: boolean;
   imageUrls?: string[] | undefined;
   selectedImage?: string | undefined;
@@ -62,6 +79,11 @@ const ProductContext = createContext<ProductContextProps>({
   checkWishListItem: () => Promise.resolve(false),
   setIsProductLoading: () => {},
   setSelectedImage: () => {},
+  addToCart: () => {},
+  getCartItems: () => {},
+  checkCartItem: () => {},
+  setSelectedCategory: () => {},
+  fetchCategories: () => Promise.resolve(),
   productData: {},
 });
 
@@ -70,12 +92,16 @@ export const useProduct = () => {
 };
 
 export const ProductProvider = ({ children }: ProductProviderProps) => {
+  const [categories, setCategories] = useState<categoryType[]>();
+  const [selectedCategory, setSelectedCategory] = useState<categoryType>();
   const [isProductLoading, setIsProductLoading] = useState<boolean>(true);
   const [hasWishlisted, setHasWishlisted] = useState<boolean>(false);
   const [wishlistButtonIsLoading, setWishlistButtonIsLoading] =
     useState<boolean>(true);
+  const [cartItems, setCartItems] = useState<productType>();
+  const [hasAddedToCart, setHasAddedToCart] = useState<boolean>();
   const [selectedImage, setSelectedImage] = useState<string | undefined>();
-  const [selectedProduct, setSelectedProduct] = useState();
+  const [selectedProduct, setSelectedProduct] = useState<dataType>();
   const [imageUrls, setImageUrls] = useState<string[]>();
   const [productData, setProductData] = useState({
     title: "",
@@ -123,9 +149,24 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     e.preventDefault();
 
     try {
+      const formData = new FormData();
+      Object.entries(productData).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          value.forEach((item) => {
+            formData.append(key, item);
+          });
+        } else {
+          formData.append(key, value);
+        }
+      });
       const response = await axiosClient.post(
         "/vendor/products/store",
-        productData
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       setProductData({
         title: "",
@@ -134,7 +175,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         body: "",
         stock: "",
         category: "",
-        images: [] as File[],
+        images: [],
       });
       console.log(response);
       router.navigate(VENDORCREATE);
@@ -190,6 +231,45 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     }
   };
 
+  const checkCartItem = (id: number) => {
+    const cartString = localStorage.getItem("cart");
+    const cart: number[] = cartString ? JSON.parse(cartString) : [];
+    setHasAddedToCart(cart.includes(id));
+  };
+
+  const addToCart = (product: number) => {
+    const cart = localStorage.getItem("cart");
+    let Items: number[] = cart ? JSON.parse(cart) : [];
+    if (!Array.isArray(Items)) {
+      Items = [];
+    }
+    Items.push(product);
+    localStorage.setItem("cart", JSON.stringify(Items));
+  };
+
+  const getCartItems = async () => {
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      const parsedCart = JSON.parse(cart);
+      console.log(parsedCart, Array.isArray(parsedCart));
+      const response = await axiosClient.get("/product/cart/get", {
+        params: {
+          ids: parsedCart,
+        },
+      });
+      setCartItems(response.data.products);
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axiosClient.get("/categories/get");
+      setCategories(response.data.categories);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const values = {
     fetchInfo,
     setSelectedImage,
@@ -198,6 +278,15 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     handleProductSubmit,
     wishlistItem,
     checkWishListItem,
+    addToCart,
+    getCartItems,
+    checkCartItem,
+    fetchCategories,
+    setSelectedCategory,
+    categories,
+    selectedCategory,
+    hasAddedToCart,
+    cartItems,
     selectedProduct,
     isProductLoading,
     hasWishlisted,
