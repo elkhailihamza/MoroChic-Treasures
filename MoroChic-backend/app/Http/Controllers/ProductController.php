@@ -36,6 +36,24 @@ class ProductController extends Controller
         }
     }
 
+    public function getProducts(Request $request)
+    {
+        $product_ids = $request->input('ids');
+        $products = Product::whereIn('id', $product_ids)->get();
+        return response()->json([
+            'products' => $products,
+        ], 200);
+    }
+
+    public function getProductsBySearch(Request $request)
+    {
+        $searchValue = $request->input("searchValue");
+        $products = Product::where("title", "like", "%" . $searchValue . "%")->get();
+        return response()->json([
+            'products' => $products,
+        ], 200);
+    }
+
     public function getUserMadeProducts(Request $request)
     {
         $user = $request->user();
@@ -70,9 +88,7 @@ class ProductController extends Controller
                 ]
             );
 
-            if ($request->has('images') && is_array($request->images)) {
-                $this->ProductImagesController->uploadImages($request->input('images'), $product);
-            }
+            $this->ProductImagesController->uploadImages($request->input('images'), $product);
 
             if ($request->has('tags_to_add') || $request->has('tags_to_remove')) {
                 $this->addOrRemoveTags($request->input('tags_to_add'), $request->input('tags_to_remove'), $product);

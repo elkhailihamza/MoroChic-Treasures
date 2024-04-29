@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImagesController;
 use App\Http\Controllers\ProfileController;
@@ -35,6 +36,8 @@ Route::controller(AuthController::class)->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::controller(ProductController::class)->group(function () {
         Route::get('/product/get/{id}', 'getProduct');
+        Route::get("/product/cart/get", "getProducts");
+        Route::get("/product/get", "getProductsBySearch");
         Route::post('/vendor/products/store', 'store');
         Route::get('/vendor/products', 'getUserMadeProducts');
     });
@@ -53,6 +56,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("/wishlist/get", [WishlistController::class, "index"]);
     Route::post("/wishlist/send", [WishlistController::class, "store"]);
     Route::get("/wishlist/check", [WishlistController::class, "check"]);
+    Route::post("/order/submit", [OrderController::class, "createOrder"]);
 });
 
 Route::get('/products/view', [ProductController::class, 'index']);

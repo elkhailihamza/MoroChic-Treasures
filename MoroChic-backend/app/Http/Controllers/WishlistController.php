@@ -10,7 +10,10 @@ class WishlistController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $wishlistedProducts = $user->wishlist->products->select('id', 'title', 'created_at')->get();
+        $wishlistedProducts = Wishlist::select('wishlists.*', 'products.id', 'products.title')
+            ->join('products', 'wishlists.product_id', '=', 'products.id')
+            ->where('wishlists.user_id', $user->id)
+            ->get();
         return response()->json([
             "wishlist" => $wishlistedProducts ?? [],
         ], 200);
@@ -42,8 +45,7 @@ class WishlistController extends Controller
     {
         $user = $request->user();
         $product_id = $request->input('id');
-        $wishlist = $user->wishlist;
-        $hasWishlisted = $wishlist->products->contains('id', $product_id);
+        $hasWishlisted = Wishlist::where('user_id', $user->id)->where('product_id', $product_id)->exists();
         return response()->json([
             'hasWishlisted' => $hasWishlisted ?? false,
         ], 200);
