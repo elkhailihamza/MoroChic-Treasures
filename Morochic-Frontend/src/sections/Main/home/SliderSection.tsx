@@ -27,7 +27,7 @@ export const Slider = () => {
             <span className="font-regular md:text-[16px] text-[13px]">
               <span className="text-[#DDA15E]">$</span>99,99
             </span>
-            <div className="md:w-44 w-24 md:mt-10 mt-5">
+            <div className="md:w-44 w-24 md:mt-10 mt-20">
               <Button
                 color="#606C38"
                 base={false}
@@ -44,17 +44,17 @@ export const Slider = () => {
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
-          <div className="md:w-60 w-28 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-20 left-20">
+          <div className="relative md:w-60 w-28 grid text-white lg:top-28 lg:left-56 md:top-28 md:left-32 top-20 left-20">
             <h1 className="font-medium  lg:text-[22px] md:text-[16px] text-[13px]">
               Something Text
             </h1>
             <span className="font-regular md:text-[16px] text-[13px]">
               <span className="text-[#DDA15E]">$</span>99,99
             </span>
-            <div className="md:w-44 w-24 md:mt-10 mt-5">
+            <div className="md:w-44 w-24 md:mt-10 mt-20">
               <Button
-                color="#606C38"
                 base={false}
+                color="#606C38"
                 className="py-1 w-full rounded-sm text-white"
               >
                 Buy
@@ -75,7 +75,7 @@ export const Slider = () => {
             <span className="font-regular md:text-[16px] text-[13px]">
               <span className="text-[#DDA15E]">$</span>99,99
             </span>
-            <div className="md:w-44 w-24 md:mt-10 mt-5">
+            <div className="md:w-44 w-24 md:mt-10 mt-20">
               <Button
                 color="#606C38"
                 base={false}
@@ -99,7 +99,7 @@ export const Slider = () => {
             <span className="font-regular md:text-[16px] text-[13px]">
               <span className="text-[#DDA15E]">$</span>99,99
             </span>
-            <div className="md:w-44 w-24 md:mt-10 mt-5">
+            <div className="md:w-44 w-24 md:mt-10 mt-20">
               <Button
                 base={false}
                 color="#606C38"
@@ -123,7 +123,7 @@ export const Slider = () => {
             <span className="font-regular md:text-[16px] text-[13px]">
               <span className="text-[#DDA15E]">$</span>99,99
             </span>
-            <div className="md:w-44 w-24 md:mt-10 mt-5">
+            <div className="md:w-44 w-24 md:mt-10 mt-20">
               <Button
                 color="#606C38"
                 base={false}

@@ -35,8 +35,9 @@ export const NewProduct = () => {
   return (
     <div className="px-20 py-16">
       <h1 className="text-2xl font-medium">Create</h1>
-      <div className="p-6 flex flew-wrap gap-5">
-        {products && products.length > 0 ? (
+      <div className="p-6 flex flex-wrap gap-5 justify-center">
+        {products &&
+          products.length > 0 &&
           products.map((product, key) => (
             <Link
               key={key}
@@ -49,17 +50,16 @@ export const NewProduct = () => {
                   <span className="font-medium">Id</span> <br /> {product.id}
                 </h1>
                 <h1 className="text-center">
-                  <span className="font-medium">Title</span> <br /> {product.title}
+                  <span className="font-medium">Title</span> <br />{" "}
+                  {product.title}
                 </h1>
                 <h1 className="text-center">
-                  <span className="font-medium">Stock</span> <br /> {product.stock}
+                  <span className="font-medium">Stock</span> <br />{" "}
+                  {product.stock}
                 </h1>
               </div>
             </Link>
-          ))
-        ) : (
-          <div></div>
-        )}
+          ))}
         <Link
           to={VENDORTEMPLATE}
           className="w-48 h-60 border-2 border-slate-600 border-dashed rounded-xl flex justify-center items-center hover:bg-gray-200 focus:bg-gray-200 cursor-pointer transition-all"

@@ -18,10 +18,35 @@ import {
 import { SpinnerCircular } from "spinners-react";
 import { useUser } from "../../contexts/UserContext";
 import moment from "moment";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useProduct } from "../../contexts/ProductContext";
+import { SearchSuggestions } from "../../components/SearchSuggestions";
 
 const Navbar = () => {
   const { logout, currentUser, isLoggedIn } = useAuth();
   const { isLoading, wishlist, fetchWishlist, wishlistIsLoading } = useUser();
+  const { fetchProductsBySearchValue } = useProduct();
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [openSearchSuggestions, setOpenSearchSuggestions] = useState<boolean>(false);
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const searchKeyword = e.target.value;
+    setSearchValue(searchKeyword);
+  };
+
+  useEffect(() => {
+    if (searchValue) {
+      setOpenSearchSuggestions(true);
+      fetchProductsBySearchValue(searchValue);
+    } else {
+      setOpenSearchSuggestions(false);
+    }
+
+    return () => {
+      setOpenSearchSuggestions(false);
+    };
+  }, [searchValue]);
+
   return (
     <>
       <nav className="bg-[#FFFFFF] shadow-sm fixed top-0 left-0 w-full z-40">
@@ -33,35 +58,36 @@ const Navbar = () => {
             <HeaderLogo />
           </Link>
           <div className="w-1/2 sm:block hidden">
-            <form>
-              <label className="mb-2 text-sm font-medium text-gray-900 sr-only ">
-                Search
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#000000"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </div>
-                <Input
-                  type="search"
-                  name="searchBar"
-                  className="block p-1 rounded-full ps-10 text-sm text-gray-900 border-2 border-gray-300 border-slate-900 bg-gray-50"
-                  placeholder="Looking for something?"
-                />
+            <label className="mb-2 text-sm font-medium text-gray-900 sr-only ">
+              Search
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#000000"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
               </div>
-            </form>
+              <Input
+                type="search"
+                onChange={handleSearchChange}
+                autoComplete="off"
+                name="searchBar"
+                className="block p-1 rounded-full ps-10 text-sm text-gray-900 border-2 border-gray-300 border-slate-900 bg-gray-50"
+                placeholder="Looking for something?"
+              />
+                <SearchSuggestions open={openSearchSuggestions} />
+            </div>
           </div>
           <div className="flex md:gap-10 items-center">
             <div className="hidden w-full md:block md:w-auto md:block hidden">
@@ -106,7 +132,6 @@ const Navbar = () => {
                                   <span className="font-bold">Title:</span>{" "}
                                   {wishedItem.title}
                                 </h1>
-
                                 <h2>
                                   {moment(wishedItem.created_at).fromNow()}
                                 </h2>
@@ -235,8 +260,10 @@ const Navbar = () => {
                       </div>
                       <Input
                         type="search"
+                        onChange={handleSearchChange}
+                        autoComplete="off"
                         name="searchBar"
-                        className="block p-1 rounded-full ps-10 text-sm text-gray-900 border-2 border-gray-300 border-slate-900 bg-gray-50"
+                        className="block p-1 rounded-full ps-10 focus:rounded-full text-sm text-gray-900 border-2 border-gray-300 border-slate-900 bg-gray-50"
                         placeholder="Looking for something?"
                       />
                       {/* <input  id="default-search" className=""  required /> */}

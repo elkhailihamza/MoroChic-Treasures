@@ -108,8 +108,8 @@ export const Item = () => {
               color="#606C38"
               onClick={async () => {
                 setAddToCartBtnIsLoading(true);
-                if (selectedProduct && selectedProduct.id) {
-                  addToCart(Number(selectedProduct.id));
+                if (selectedProduct) {
+                  addToCart(selectedProduct);
                 }
                 setAddToCartBtnIsLoading(false);
               }}

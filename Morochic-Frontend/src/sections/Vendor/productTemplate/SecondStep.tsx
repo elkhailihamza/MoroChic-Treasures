@@ -6,7 +6,7 @@ import { useProduct } from "../../../contexts/ProductContext";
 
 export const SecondStep = () => {
   const {
-    handleProductInfoChange,
+    handleProductImageUpload,
     imageUrls,
     selectedImage,
     setSelectedImage,
@@ -28,7 +28,7 @@ export const SecondStep = () => {
             <Input
               name="images"
               id="image"
-              onChange={handleProductInfoChange}
+              onChange={handleProductImageUpload}
               type="file"
               multiple={true}
               base={false}

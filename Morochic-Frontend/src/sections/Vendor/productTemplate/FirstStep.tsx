@@ -22,10 +22,9 @@ export const FirstStep = () => {
           <Input
             name="price"
             className="mt-7"
-            value={productData?.price}
+            value={productData.price?.toString()}
             onChange={handleProductInfoChange}
             placeholder="price*"
-            max={5}
           />
         </div>
         <div className="lg:w-1/2 w-96">

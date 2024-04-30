@@ -52,9 +52,10 @@ export const FourthStep = () => {
         <div className="w-96 mt-5">
           <Input
             name="stock"
-            value={productData?.stock}
+            value={productData?.stock?.toString()}
             placeholder="Stock*"
             onChange={handleProductInfoChange}
+            max={999}
           />
         </div>
       </div>

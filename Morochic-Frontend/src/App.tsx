@@ -30,6 +30,7 @@ import { NewProduct } from "./pages/vendor/NewProduct";
 import { ProductProvider } from "./contexts/ProductContext";
 import { ProductTemplate } from "./pages/vendor/ProductTemplate";
 import { UserLayout } from "./layouts/UserLayout";
+import { Explore } from "./pages/main/Explore";
 
 export const LOGIN = "/auth/login";
 export const REGISTER = "/auth/register";
@@ -38,6 +39,7 @@ export const SETTINGS = "/settings";
 export const PROFILE = "/profile";
 export const CATALOG = "/catalog";
 export const CART = "/cart";
+export const EXPLORE = "/catalog/explore";
 export const VENDORTEMPLATE = "/vendor/create/template";
 export const VENDORCREATE = "/vendor/create";
 export const UNAUTHORIZED = "/401";
@@ -63,6 +65,7 @@ export const router = createBrowserRouter(
         <Route index element={<HomeMain />} />
         <Route path="about" element={<AboutUs />} />
         <Route path="catalog" element={<Catalog />} />
+        <Route path="catalog/explore" element={<Explore />} />
         <Route path="catalog/product/:id" element={<Item />} />
         <Route path="cart" element={<ShoppingCart />} />
       </Route>
