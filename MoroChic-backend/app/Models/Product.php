@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'id';
     protected $fillable = [
         'title',
+        'price',
+        'mini-body',
         'body',
         'stock',
         'user_id',
@@ -19,15 +23,25 @@ class Product extends Model
     {
         return $this->hasMany(ProductImages::class, 'product_id');
     }
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function wishlists()
+    {
+        return $this->belongsToMany(User::class, 'wishlists');
     }
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
     }
-    public function categories() {
+    public function categories()
+    {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
     }
 }

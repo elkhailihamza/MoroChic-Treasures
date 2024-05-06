@@ -1,11 +1,13 @@
 interface DividerProps {
-  divide?: boolean;
+  className?: string;
+  height?: string;
 }
 
-export const Divider = ({ divide = false }: DividerProps) => {
+export const Divider = ({ className, height = "1.5px" }: DividerProps) => {
   return (
-    <div className="my-10 px-5">
-      {divide && <hr className="h-[1px] border-0 bg-gray-700/30" />}
-    </div>
+    <hr
+      className={`border-0 bg-gray-700/30 ${className}`}
+      style={{ height: height }}
+    />
   );
 };

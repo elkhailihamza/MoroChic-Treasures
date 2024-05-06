@@ -7,14 +7,13 @@ use Illuminate\Http\Request;
 
 class ProductImagesController extends Controller
 {
-    public function store($images, $product)
+    public function uploadImages($images, $product)
     {
         foreach ($images as $image) :
             $imagePath = $image->store('images', 'public');
-            if ($product->cover && file_exists(storage_path('app/public/' . $product->book_cover))) {
-                unlink(storage_path('app/public/' . $product->book_cover));
+            if ($product->product_images->img_url && file_exists(storage_path('app/public/' . $product->product_images->img_url))) {
+                unlink(storage_path('app/public/' . $product->product_images->img_url));
             }
-            $imagePath = $product->file('img_url')->store('product_images', 'public');
             ProductImages::create([
                 'productId' => $product->id,
                 'img_url' => $imagePath,
