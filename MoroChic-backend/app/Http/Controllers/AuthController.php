@@ -2,66 +2,79 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Validator;
+use App\Repositories\AuthRepositoryInterface;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+    protected $authRepository;
+
+    public function __construct(AuthRepositoryInterface $authRepository)
+    {
+        $this->authRepository = $authRepository;
+    }
+
     public function login(Request $request)
     {
-        $data = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        try {
+            $data = $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
 
-        if (!Auth::attempt($data)) {
-            return response()->json(['message' => 'Wrong Credentials!', 401]);
+            $response = $this->authRepository->login($data, $request);
+
+            return response()->json($response, 200);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Login Failed!',
+                'errors' => $e->validator->errors(),
+            ], 422);
         }
-
-        $user = User::where('email', $request['email'])->firstOrFail();
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json([
-            'message' => 'Successfully logged in!',
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ], 200);
     }
+
     public function register(Request $request)
     {
         try {
             $request->validate([
                 'username' => 'required|string|min:3|max:255',
                 'email' => 'required|email|max:255|unique:users',
-                'password' => 'required|string|min:8',
+                'password' => 'required|string|min:8|confirmed',
             ]);
 
-            $user = User::create([
-                'username' => $request->input('username'),
-                'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password')),
-            ]);
+            $response = $this->authRepository->register($request);
 
-            $token = $user->createToken('auth_token')->plainTextToken;
-
-            return response()->json([
-                'message' => 'Successfully created account!',
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-            ], 201);
+            return response()->json($response, 201);
         } catch (ValidationException $e) {
             return response()->json([
                 'message' => 'Registration Failed!',
-                'errors' => $e->validator->errors()->all(),
+                'errors' => $e->validator->errors(),
             ], 422);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Registration Failed!',
+                'errors' => $e->getMessage(),
+            ], 500);
         }
     }
+
+    public function logout(Request $request)
+    {
+        try {
+            $response = $this->authRepository->logout($request);
+
+            return response()->json($response, 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
+    }
+
     public function me(Request $request)
     {
-        return $request->user();
+        $response = $this->authRepository->me($request);
+
+        return response()->json($response, 200);
     }
 }
